@@ -52,7 +52,7 @@ begin
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
   values (v_stop, 'Historic Berlin',
-          'A guided sightseeing tour past the State Opera House, Museum Island, the Reichstag, Tiergarten, and Ku''damm, with photo stops at the Brandenburg Gate, the Kaiser Wilhelm Memorial Church, and the Holocaust Memorial.', false, 4)
+          'A guided walk through Berlin''s twentieth-century history, roughly in this order: a marker tracing the line of the Berlin Wall, Checkpoint Charlie, the Topographie des Terrors beside a surviving stretch of the Wall, and the Memorial to the Murdered Jews of Europe. That memorial sits directly across from the deliberately unmarked site of the Führerbunker — said to be a quiet, pointed slight against Hitler. From there to the Brandenburg Gate, and finally the Kurfürstendamm. The Reichstag stayed out of reach behind a city event, and the State Opera House slipped past without a photo.', false, 4)
   returning id into v_act;
   insert into public.photos (activity_id, sort_order) select v_act, g from generate_series(1, 3) g;
 

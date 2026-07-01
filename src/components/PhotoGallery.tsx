@@ -38,6 +38,15 @@ export default function PhotoGallery({ photos }: { photos: Photo[] }) {
                 sizes="(max-width: 640px) 50vw, 33vw"
                 className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
               />
+              {p.caption && (
+                <span
+                  aria-hidden
+                  title="Has a note — click to read"
+                  className="absolute bottom-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/55 text-xs font-semibold text-white/90 backdrop-blur-sm"
+                >
+                  i
+                </span>
+              )}
             </button>
           );
         })}

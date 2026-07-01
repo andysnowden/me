@@ -111,8 +111,13 @@ export default function Lightbox({
       )}
 
       {photo.caption && (
-        <div className="absolute bottom-5 left-1/2 max-w-[90vw] -translate-x-1/2 text-center text-sm text-white/80">
-          {photo.caption}
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className="absolute inset-x-0 bottom-0 flex justify-center bg-gradient-to-t from-black/80 via-black/50 to-transparent px-6 pb-7 pt-14"
+        >
+          <p className="max-w-2xl text-center text-[15px] leading-relaxed text-white/90">
+            {photo.caption}
+          </p>
         </div>
       )}
     </div>
