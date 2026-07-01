@@ -56,8 +56,13 @@ export default function RouteMap({ stops }: { stops: MapStop[] }) {
         lineCap: "round",
       }).addTo(map);
 
-      // Numbered markers.
+      // Numbered markers — one per location (a round trip revisits a city, and
+      // we don't want two pins stacked on the same spot).
+      const seen = new Set<string>();
       ordered.forEach((s) => {
+        const key = `${s.lat.toFixed(3)},${s.lng.toFixed(3)}`;
+        if (seen.has(key)) return;
+        seen.add(key);
         const icon = L.divIcon({
           className: "route-pin",
           html: `<span style="

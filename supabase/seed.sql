@@ -23,33 +23,39 @@ begin
 
   insert into public.photos (trip_id, sort_order) values (v_trip, 0);
 
-  -- 1 · Berlin
+  -- 1 · Berlin (start)
   insert into public.stops (trip_id, slug, city, country, lat, lng, "order", nights, date_from, date_to, summary)
-  values (v_trip, 'berlin', 'Berlin', 'Germany', 52.52, 13.405, 1, 4, '2026-06-19', '2026-06-22',
-          'Where the tour began and ended — a few nights to start, and a farewell night on the way home.')
+  values (v_trip, 'berlin', 'Berlin', 'Germany', 52.52, 13.405, 1, 3, '2026-06-19', '2026-06-22',
+          'Where the tour began — and, arriving a day early, a self-guided first day among Berlin''s museums before meeting the group.')
   returning id into v_stop;
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
+  values (v_stop, 'Deutsches Technikmuseum',
+          'With a free day before the tour, a self-guided morning at the Deutsches Technikmuseum — aircraft, locomotives, and hands-on exhibits across its sprawling halls.', false, 1)
+  returning id into v_act;
+  insert into public.photos (activity_id, sort_order) select v_act, g from generate_series(1, 8) g;
+
+  insert into public.activities (stop_id, title, description, is_highlight, sort_order)
+  values (v_stop, 'Museum für Naturkunde',
+          'Berlin''s Museum of Natural History, home to the world''s tallest mounted dinosaur skeleton. It didn''t quite win us over, though — hence only a couple of photos.', false, 2)
+  returning id into v_act;
+  insert into public.photos (activity_id, sort_order) select v_act, g from generate_series(1, 2) g;
+
+  insert into public.activities (stop_id, title, description, is_highlight, sort_order)
   values (v_stop, 'Welcome dinner',
-          'Met the Tour Director and traveling companions over a welcome dinner at the hotel.', false, 1);
+          'Met the Tour Director and traveling companions over a welcome dinner at the hotel.', false, 3);
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
   values (v_stop, 'Historic Berlin',
-          'A guided sightseeing tour past the State Opera House, Museum Island, the Reichstag, Tiergarten, and Ku''damm, with photo stops at the Brandenburg Gate, the Kaiser Wilhelm Memorial Church, and the Holocaust Memorial.', false, 2)
+          'A guided sightseeing tour past the State Opera House, Museum Island, the Reichstag, Tiergarten, and Ku''damm, with photo stops at the Brandenburg Gate, the Kaiser Wilhelm Memorial Church, and the Holocaust Memorial.', false, 4)
   returning id into v_act;
   insert into public.photos (activity_id, sort_order) select v_act, g from generate_series(1, 3) g;
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
   values (v_stop, 'Half-Day Potsdam Discovery',
-          'Out to Potsdam: the House of the Wannsee Conference, the gardens of Sanssouci Palace, the Dutch Quarter and the Alexandrowka Russian colony, and the Glienicke Brücke — the Cold War ''Bridge of Spies.''', false, 3)
+          'Out to Potsdam: the House of the Wannsee Conference, the gardens of Sanssouci Palace, the Dutch Quarter and the Alexandrowka Russian colony, and the Glienicke Brücke — the Cold War ''Bridge of Spies.''', false, 5)
   returning id into v_act;
   insert into public.photos (activity_id, sort_order) select v_act, g from generate_series(1, 3) g;
-
-  insert into public.activities (stop_id, title, description, is_highlight, sort_order)
-  values (v_stop, 'Home via Dresden',
-          'On the final leg back to Berlin, a stop in Dresden for the Baroque courtyard of the Zwinger Palace, then a farewell dinner in the city where it all began.', false, 4)
-  returning id into v_act;
-  insert into public.photos (activity_id, sort_order) select v_act, g from generate_series(1, 2) g;
 
   -- 2 · Warsaw
   insert into public.stops (trip_id, slug, city, country, lat, lng, "order", nights, date_from, date_to, summary)
@@ -188,4 +194,20 @@ begin
           'A guided culinary walk through three local eateries — savory to sweet, finishing with a traditional kolache.', false, 4)
   returning id into v_act;
   insert into public.photos (activity_id, sort_order) select v_act, g from generate_series(1, 2) g;
+
+  -- 7 · Berlin (return)
+  insert into public.stops (trip_id, slug, city, country, lat, lng, "order", nights, date_from, date_to, summary)
+  values (v_trip, 'berlin-return', 'Berlin', 'Germany', 52.52, 13.405, 7, 1, '2026-07-02', '2026-07-03',
+          'Back where it started, for a farewell night and the flight home.')
+  returning id into v_stop;
+
+  insert into public.activities (stop_id, title, description, is_highlight, sort_order)
+  values (v_stop, 'Home via Dresden',
+          'On the final leg back to Berlin, a stop in Dresden for the Baroque courtyard of the Zwinger Palace, then a farewell dinner in the city where it all began.', false, 1)
+  returning id into v_act;
+  insert into public.photos (activity_id, sort_order) select v_act, g from generate_series(1, 2) g;
+
+  insert into public.activities (stop_id, title, description, is_highlight, sort_order)
+  values (v_stop, 'Departure',
+          'The tour ended after breakfast — auf Wiedersehen, Berlin.', false, 2);
 end $$;

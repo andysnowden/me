@@ -38,19 +38,37 @@ export const sampleTrip: Trip = {
       lat: 52.52,
       lng: 13.405,
       order: 1,
-      nights: 4,
+      nights: 3,
       dateFrom: "2026-06-19",
       dateTo: "2026-06-22",
       summary:
-        "Where the tour began and ended — a few nights to start, and a farewell night on the way home.",
+        "Where the tour began — and, arriving a day early, a self-guided first day among Berlin's museums before meeting the group.",
       activities: [
+        {
+          id: "berlin-technikmuseum",
+          title: "Deutsches Technikmuseum",
+          description:
+            "With a free day before the tour, a self-guided morning at the Deutsches Technikmuseum — aircraft, locomotives, and hands-on exhibits across its sprawling halls.",
+          isHighlight: false,
+          sortOrder: 1,
+          photos: slots("berlin-technikmuseum", 8),
+        },
+        {
+          id: "berlin-naturkunde",
+          title: "Museum für Naturkunde",
+          description:
+            "Berlin's Museum of Natural History, home to the world's tallest mounted dinosaur skeleton. It didn't quite win us over, though — hence only a couple of photos.",
+          isHighlight: false,
+          sortOrder: 2,
+          photos: slots("berlin-naturkunde", 2),
+        },
         {
           id: "berlin-welcome",
           title: "Welcome dinner",
           description:
             "Met the Tour Director and traveling companions over a welcome dinner at the hotel.",
           isHighlight: false,
-          sortOrder: 1,
+          sortOrder: 3,
           photos: [],
         },
         {
@@ -59,7 +77,7 @@ export const sampleTrip: Trip = {
           description:
             "A guided sightseeing tour past the State Opera House, Museum Island, the Reichstag, Tiergarten, and Ku'damm, with photo stops at the Brandenburg Gate, the Kaiser Wilhelm Memorial Church, and the Holocaust Memorial.",
           isHighlight: false,
-          sortOrder: 2,
+          sortOrder: 4,
           photos: slots("berlin-historic", 3),
         },
         {
@@ -68,17 +86,8 @@ export const sampleTrip: Trip = {
           description:
             "Out to Potsdam: the House of the Wannsee Conference, the gardens of Sanssouci Palace, the Dutch Quarter and the Alexandrowka Russian colony, and the Glienicke Brücke — the Cold War 'Bridge of Spies.'",
           isHighlight: false,
-          sortOrder: 3,
+          sortOrder: 5,
           photos: slots("berlin-potsdam", 3),
-        },
-        {
-          id: "berlin-return",
-          title: "Home via Dresden",
-          description:
-            "On the final leg back to Berlin, a stop in Dresden for the Baroque courtyard of the Zwinger Palace, then a farewell dinner in the city where it all began.",
-          isHighlight: false,
-          sortOrder: 4,
-          photos: slots("berlin-return", 2),
         },
       ],
     },
@@ -318,6 +327,38 @@ export const sampleTrip: Trip = {
           isHighlight: false,
           sortOrder: 4,
           photos: slots("prague-czech-please", 2),
+        },
+      ],
+    },
+    {
+      id: "stop-berlin-return",
+      slug: "berlin-return",
+      city: "Berlin",
+      country: "Germany",
+      lat: 52.52,
+      lng: 13.405,
+      order: 7,
+      nights: 1,
+      dateFrom: "2026-07-02",
+      dateTo: "2026-07-03",
+      summary: "Back where it started, for a farewell night and the flight home.",
+      activities: [
+        {
+          id: "berlin-return-dresden",
+          title: "Home via Dresden",
+          description:
+            "On the final leg back to Berlin, a stop in Dresden for the Baroque courtyard of the Zwinger Palace, then a farewell dinner in the city where it all began.",
+          isHighlight: false,
+          sortOrder: 1,
+          photos: slots("berlin-return", 2),
+        },
+        {
+          id: "berlin-return-depart",
+          title: "Departure",
+          description: "The tour ended after breakfast — auf Wiedersehen, Berlin.",
+          isHighlight: false,
+          sortOrder: 2,
+          photos: [],
         },
       ],
     },
