@@ -36,6 +36,23 @@ function stored(dir: string, group: string, nums: number | number[]): Photo[] {
   });
 }
 
+// Like stored(), but with a per-photo caption (in order). Length sets the count.
+function captioned(
+  dir: string,
+  group: string,
+  captions: (string | null)[],
+): Photo[] {
+  return captions.map((caption, i) => {
+    const nn = String(i + 1).padStart(2, "0");
+    return {
+      id: `${group}-${nn}`,
+      src: `${dir}/${group}/${group}-${nn}.jpg`,
+      caption,
+      sortOrder: i + 1,
+    };
+  });
+}
+
 export const sampleTrip: Trip = {
   id: "best-of-eastern-europe",
   slug: "eastern-europe",
@@ -100,7 +117,21 @@ export const sampleTrip: Trip = {
             "A guided walk through Berlin's twentieth-century history, roughly in this order: a marker tracing the line of the Berlin Wall, Checkpoint Charlie, the Topographie des Terrors beside a surviving stretch of the Wall, and the Memorial to the Murdered Jews of Europe. That memorial sits directly across from the deliberately unmarked site of the Führerbunker — said to be a quiet, pointed slight against Hitler. From there to the Brandenburg Gate, and finally the Kurfürstendamm. The Reichstag stayed out of reach behind a city event, and the State Opera House slipped past without a photo.",
           isHighlight: false,
           sortOrder: 4,
-          photos: slots("berlin-historic", 3),
+          photos: captioned("eastern-europe/berlin", "historic-berlin", [
+            "A double line of cobblestones and this bronze strip — “Berliner Mauer 1961–1989” — trace where the Wall once cut through the city.",
+            "Checkpoint Charlie: the Cold War crossing between the American and Soviet sectors, and its famous four-language sign.",
+            "The reverse side — “You are entering the American sector.”",
+            "Us at the Checkpoint Charlie guard house.",
+            "The Topographie des Terrors, on the cleared site of the Gestapo and SS headquarters, with a preserved stretch of Wall out front.",
+            "Beneath the walkway, the excavated cellars where the SS and Gestapo once held and interrogated prisoners.",
+            "One of the longest surviving stretches of the Wall — pitted and rebar-bared by years of souvenir-hunting “wall-peckers.”",
+            "The Memorial to the Murdered Jews of Europe: Peter Eisenman's field of 2,711 concrete stelae, rising and falling like a swell underfoot.",
+            "The site of the Führerbunker, where Hitler spent his final days in 1945. Left deliberately unmarked and now, fittingly, a car park — the Memorial to the Murdered Jews of Europe stands just across the way.",
+            "Down Straße des 17. Juni to the Siegessäule — the Victory Column, its gilded Victoria catching the sun above the Tiergarten.",
+            "The Brandenburg Gate — once stranded in the Wall's no-man's-land, now Berlin's symbol of reunification.",
+            "Up close: the Quadriga, victory driving her four-horse chariot atop the gate.",
+            "On the Kurfürstendamm, the Kaiser Wilhelm Memorial Church — its bomb-shattered spire left unrepaired as a memorial, nicknamed by Berliners “the hollow tooth.”",
+          ]),
         },
         {
           id: "berlin-potsdam",

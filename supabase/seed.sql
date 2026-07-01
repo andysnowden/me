@@ -54,7 +54,20 @@ begin
   values (v_stop, 'Historic Berlin',
           'A guided walk through Berlin''s twentieth-century history, roughly in this order: a marker tracing the line of the Berlin Wall, Checkpoint Charlie, the Topographie des Terrors beside a surviving stretch of the Wall, and the Memorial to the Murdered Jews of Europe. That memorial sits directly across from the deliberately unmarked site of the Führerbunker — said to be a quiet, pointed slight against Hitler. From there to the Brandenburg Gate, and finally the Kurfürstendamm. The Reichstag stayed out of reach behind a city event, and the State Opera House slipped past without a photo.', false, 4)
   returning id into v_act;
-  insert into public.photos (activity_id, sort_order) select v_act, g from generate_series(1, 3) g;
+  insert into public.photos (activity_id, src, caption, sort_order) values
+  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-01.jpg', 'A double line of cobblestones and this bronze strip — “Berliner Mauer 1961–1989” — trace where the Wall once cut through the city.', 1),
+  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-02.jpg', 'Checkpoint Charlie: the Cold War crossing between the American and Soviet sectors, and its famous four-language sign.', 2),
+  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-03.jpg', 'The reverse side — “You are entering the American sector.”', 3),
+  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-04.jpg', 'Us at the Checkpoint Charlie guard house.', 4),
+  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-05.jpg', 'The Topographie des Terrors, on the cleared site of the Gestapo and SS headquarters, with a preserved stretch of Wall out front.', 5),
+  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-06.jpg', 'Beneath the walkway, the excavated cellars where the SS and Gestapo once held and interrogated prisoners.', 6),
+  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-07.jpg', 'One of the longest surviving stretches of the Wall — pitted and rebar-bared by years of souvenir-hunting “wall-peckers.”', 7),
+  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-08.jpg', 'The Memorial to the Murdered Jews of Europe: Peter Eisenman''s field of 2,711 concrete stelae, rising and falling like a swell underfoot.', 8),
+  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-09.jpg', 'The site of the Führerbunker, where Hitler spent his final days in 1945. Left deliberately unmarked and now, fittingly, a car park — the Memorial to the Murdered Jews of Europe stands just across the way.', 9),
+  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-10.jpg', 'Down Straße des 17. Juni to the Siegessäule — the Victory Column, its gilded Victoria catching the sun above the Tiergarten.', 10),
+  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-11.jpg', 'The Brandenburg Gate — once stranded in the Wall''s no-man''s-land, now Berlin''s symbol of reunification.', 11),
+  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-12.jpg', 'Up close: the Quadriga, victory driving her four-horse chariot atop the gate.', 12),
+  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-13.jpg', 'On the Kurfürstendamm, the Kaiser Wilhelm Memorial Church — its bomb-shattered spire left unrepaired as a memorial, nicknamed by Berliners “the hollow tooth.”', 13);
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
   values (v_stop, 'Half-Day Potsdam Discovery',
