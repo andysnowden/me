@@ -18,19 +18,19 @@ function slots(prefix: string, n: number): Photo[] {
   }));
 }
 
-// Helper: uploaded photos in the trip-photos bucket, named <group>-NN.jpg.
-// Pass a count (1..n) or an explicit list of numbers (to skip removed shots).
-function stored(dir: string, group: string, nums: number | number[]): Photo[] {
-  const list =
-    typeof nums === "number"
-      ? Array.from({ length: nums }, (_, i) => i + 1)
-      : nums;
-  return list.map((num, i) => {
+// Helper: uploaded photos with per-photo captions. Each entry is [number, caption];
+// the number is the NN in <group>-NN.jpg, which lets us skip removed shots.
+function storedCaptioned(
+  dir: string,
+  group: string,
+  entries: [number, string | null][],
+): Photo[] {
+  return entries.map(([num, caption], i) => {
     const nn = String(num).padStart(2, "0");
     return {
       id: `${group}-${nn}`,
       src: `${dir}/${group}/${group}-${nn}.jpg`,
-      caption: null,
+      caption,
       sortOrder: i + 1,
     };
   });
@@ -86,11 +86,19 @@ export const sampleTrip: Trip = {
             "With a free day before the tour, a self-guided morning at the Deutsches Technikmuseum, aircraft, locomotives, and hands-on exhibits across its sprawling halls.",
           isHighlight: false,
           sortOrder: 1,
-          photos: stored(
-            "eastern-europe/berlin",
-            "technikmuseum",
-            [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12], // 08 was a duplicate
-          ),
+          photos: storedCaptioned("eastern-europe/berlin", "technikmuseum", [
+            [1, "In the aviation hall, the corrugated Junkers Ju 52 in Lufthansa colours, framed by a neighbor's brightly painted wing overhead."],
+            [2, "Looking down over the maritime hall and its reconstructed wooden cargo ship."],
+            [3, "An early glider of the kind Otto Lilienthal pioneered, the fragile beginning of human flight."],
+            [4, "Aircraft strung throughout the atrium, from a Swiss-marked trainer to a delicate early glider."],
+            [5, "A wartime fighter overhead, still wearing its Luftwaffe cross."],
+            [6, "Early jet engines, one cut open to show the workings of a turbojet."],
+            [7, "The Ju 52 from the side, D-AZAW in Lufthansa livery, with travelers dressed for the 1930s about to board."],
+            [9, "A Messerschmitt Bf 110 head-on, flight gear and life vests laid out in the cases below."],
+            [10, "A swept-wing Cold War jet overhead, a battered propeller from an earlier era beneath it."],
+            [11, "The Bf 110 again from the side, among the aircraft packed wing to wing across the hall."],
+            [12, "A V-1 flying bomb and other munitions, hung against photographs of the bombed city."],
+          ]), // 08 was a duplicate
         },
         {
           id: "berlin-naturkunde",
@@ -99,7 +107,10 @@ export const sampleTrip: Trip = {
             "Berlin's Museum of Natural History, home to the world's tallest mounted dinosaur skeleton. It didn't quite win us over, though, hence only a couple of photos.",
           isHighlight: false,
           sortOrder: 2,
-          photos: stored("eastern-europe/berlin", "naturkunde", 2),
+          photos: storedCaptioned("eastern-europe/berlin", "naturkunde", [
+            [1, "The wet collection, a glowing glass vault of thousands of creatures preserved in alcohol and one of the museum's signature sights."],
+            [2, "A towering Tyrannosaurus rex skeleton in the dinosaur hall."],
+          ]),
         },
         {
           id: "berlin-welcome",

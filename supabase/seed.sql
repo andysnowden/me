@@ -34,17 +34,26 @@ begin
           'With a free day before the tour, a self-guided morning at the Deutsches Technikmuseum, aircraft, locomotives, and hands-on exhibits across its sprawling halls.', false, 1)
   returning id into v_act;
   -- 08 was a duplicate of 07 and was removed.
-  insert into public.photos (activity_id, src, sort_order)
-  select v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-' || lpad(n::text, 2, '0') || '.jpg', ord
-  from unnest(array[1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12]) with ordinality as t(n, ord);
+  insert into public.photos (activity_id, src, caption, sort_order) values
+  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-01.jpg', 'In the aviation hall, the corrugated Junkers Ju 52 in Lufthansa colours, framed by a neighbor''s brightly painted wing overhead.', 1),
+  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-02.jpg', 'Looking down over the maritime hall and its reconstructed wooden cargo ship.', 2),
+  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-03.jpg', 'An early glider of the kind Otto Lilienthal pioneered, the fragile beginning of human flight.', 3),
+  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-04.jpg', 'Aircraft strung throughout the atrium, from a Swiss-marked trainer to a delicate early glider.', 4),
+  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-05.jpg', 'A wartime fighter overhead, still wearing its Luftwaffe cross.', 5),
+  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-06.jpg', 'Early jet engines, one cut open to show the workings of a turbojet.', 6),
+  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-07.jpg', 'The Ju 52 from the side, D-AZAW in Lufthansa livery, with travelers dressed for the 1930s about to board.', 7),
+  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-09.jpg', 'A Messerschmitt Bf 110 head-on, flight gear and life vests laid out in the cases below.', 8),
+  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-10.jpg', 'A swept-wing Cold War jet overhead, a battered propeller from an earlier era beneath it.', 9),
+  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-11.jpg', 'The Bf 110 again from the side, among the aircraft packed wing to wing across the hall.', 10),
+  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-12.jpg', 'A V-1 flying bomb and other munitions, hung against photographs of the bombed city.', 11);
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
   values (v_stop, 'Museum für Naturkunde',
           'Berlin''s Museum of Natural History, home to the world''s tallest mounted dinosaur skeleton. It didn''t quite win us over, though, hence only a couple of photos.', false, 2)
   returning id into v_act;
-  insert into public.photos (activity_id, src, sort_order)
-  select v_act, 'eastern-europe/berlin/naturkunde/naturkunde-' || lpad(g::text, 2, '0') || '.jpg', g
-  from generate_series(1, 2) g;
+  insert into public.photos (activity_id, src, caption, sort_order) values
+  (v_act, 'eastern-europe/berlin/naturkunde/naturkunde-01.jpg', 'The wet collection, a glowing glass vault of thousands of creatures preserved in alcohol and one of the museum''s signature sights.', 1),
+  (v_act, 'eastern-europe/berlin/naturkunde/naturkunde-02.jpg', 'A towering Tyrannosaurus rex skeleton in the dinosaur hall.', 2);
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
   values (v_stop, 'Welcome dinner',
