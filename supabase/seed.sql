@@ -33,9 +33,10 @@ begin
   values (v_stop, 'Deutsches Technikmuseum',
           'With a free day before the tour, a self-guided morning at the Deutsches Technikmuseum — aircraft, locomotives, and hands-on exhibits across its sprawling halls.', false, 1)
   returning id into v_act;
+  -- 08 was a duplicate of 07 and was removed.
   insert into public.photos (activity_id, src, sort_order)
-  select v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-' || lpad(g::text, 2, '0') || '.jpg', g
-  from generate_series(1, 12) g;
+  select v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-' || lpad(n::text, 2, '0') || '.jpg', ord
+  from unnest(array[1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12]) with ordinality as t(n, ord);
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
   values (v_stop, 'Museum für Naturkunde',

@@ -18,10 +18,15 @@ function slots(prefix: string, n: number): Photo[] {
   }));
 }
 
-// Helper: N uploaded photos in the trip-photos bucket, named <group>-NN.jpg.
-function stored(dir: string, group: string, n: number): Photo[] {
-  return Array.from({ length: n }, (_, i) => {
-    const nn = String(i + 1).padStart(2, "0");
+// Helper: uploaded photos in the trip-photos bucket, named <group>-NN.jpg.
+// Pass a count (1..n) or an explicit list of numbers (to skip removed shots).
+function stored(dir: string, group: string, nums: number | number[]): Photo[] {
+  const list =
+    typeof nums === "number"
+      ? Array.from({ length: nums }, (_, i) => i + 1)
+      : nums;
+  return list.map((num, i) => {
+    const nn = String(num).padStart(2, "0");
     return {
       id: `${group}-${nn}`,
       src: `${dir}/${group}/${group}-${nn}.jpg`,
@@ -64,7 +69,11 @@ export const sampleTrip: Trip = {
             "With a free day before the tour, a self-guided morning at the Deutsches Technikmuseum — aircraft, locomotives, and hands-on exhibits across its sprawling halls.",
           isHighlight: false,
           sortOrder: 1,
-          photos: stored("eastern-europe/berlin", "technikmuseum", 12),
+          photos: stored(
+            "eastern-europe/berlin",
+            "technikmuseum",
+            [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12], // 08 was a duplicate
+          ),
         },
         {
           id: "berlin-naturkunde",
