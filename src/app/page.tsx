@@ -12,7 +12,7 @@ export default function Home() {
         </h1>
         <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
           A personal corner of the internet. Right now it&rsquo;s mostly about
-          travel — where I&rsquo;ve been and what stuck with me. More to come.
+          travel, where I&rsquo;ve been and what stuck with me. More to come.
         </p>
         <div className="mt-10 flex flex-wrap items-center gap-4">
           <Link

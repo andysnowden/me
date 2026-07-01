@@ -57,9 +57,9 @@ export const sampleTrip: Trip = {
   id: "best-of-eastern-europe",
   slug: "eastern-europe",
   title: "The Best of Eastern Europe",
-  subtitle: "Fourteen days, six countries — a guided Globus tour",
+  subtitle: "Fourteen days, six countries, a guided Globus tour",
   summary:
-    "Two weeks across Eastern Europe on Globus's “Best of Eastern Europe” tour. Starting and ending in Berlin, the route ran through Poland — with a sobering day at Auschwitz — and on to Budapest, Vienna, and Prague. Here's the journey, city by city.",
+    "Two weeks across Eastern Europe on Globus's “Best of Eastern Europe” tour. Starting and ending in Berlin, the route ran through Poland, with a sobering day at Auschwitz, and on to Budapest, Vienna, and Prague. Here's the journey, city by city.",
   tourOperator: "Globus",
   startDate: "2026-06-19",
   endDate: "2026-07-03",
@@ -77,13 +77,13 @@ export const sampleTrip: Trip = {
       dateFrom: "2026-06-19",
       dateTo: "2026-06-22",
       summary:
-        "Where the tour began — and, arriving a day early, a self-guided first day among Berlin's museums before meeting the group.",
+        "Where the tour began. We arrived a day early and spent a self-guided first day among Berlin's museums before meeting the group.",
       activities: [
         {
           id: "berlin-technikmuseum",
           title: "Deutsches Technikmuseum",
           description:
-            "With a free day before the tour, a self-guided morning at the Deutsches Technikmuseum — aircraft, locomotives, and hands-on exhibits across its sprawling halls.",
+            "With a free day before the tour, a self-guided morning at the Deutsches Technikmuseum, aircraft, locomotives, and hands-on exhibits across its sprawling halls.",
           isHighlight: false,
           sortOrder: 1,
           photos: stored(
@@ -96,7 +96,7 @@ export const sampleTrip: Trip = {
           id: "berlin-naturkunde",
           title: "Museum für Naturkunde",
           description:
-            "Berlin's Museum of Natural History, home to the world's tallest mounted dinosaur skeleton. It didn't quite win us over, though — hence only a couple of photos.",
+            "Berlin's Museum of Natural History, home to the world's tallest mounted dinosaur skeleton. It didn't quite win us over, though, hence only a couple of photos.",
           isHighlight: false,
           sortOrder: 2,
           photos: stored("eastern-europe/berlin", "naturkunde", 2),
@@ -114,30 +114,30 @@ export const sampleTrip: Trip = {
           id: "berlin-historic",
           title: "Historic Berlin",
           description:
-            "A guided walk through Berlin's twentieth-century history, roughly in this order: a marker tracing the line of the Berlin Wall, Checkpoint Charlie, the Topographie des Terrors beside a surviving stretch of the Wall, and the Memorial to the Murdered Jews of Europe. That memorial sits directly across from the deliberately unmarked site of the Führerbunker — said to be a quiet, pointed slight against Hitler. From there to the Brandenburg Gate, and finally the Kurfürstendamm. The Reichstag stayed out of reach behind a city event, and the State Opera House slipped past without a photo.",
+            "A guided walk through Berlin's twentieth-century history, roughly in this order: a marker tracing the line of the Berlin Wall, Checkpoint Charlie, the Topographie des Terrors beside a surviving stretch of the Wall, and the Memorial to the Murdered Jews of Europe. That memorial sits directly across from the deliberately unmarked site of the Führerbunker, said to be a quiet, pointed slight against Hitler. From there to the Brandenburg Gate, and finally the Kurfürstendamm. The Reichstag stayed out of reach behind a city event, and the State Opera House slipped past without a photo.",
           isHighlight: false,
           sortOrder: 4,
           photos: captioned("eastern-europe/berlin", "historic-berlin", [
-            "A double line of cobblestones and this bronze strip — “Berliner Mauer 1961–1989” — trace where the Wall once cut through the city.",
+            "A double line of cobblestones and this bronze strip, “Berliner Mauer 1961–1989”, trace where the Wall once cut through the city.",
             "Checkpoint Charlie: the Cold War crossing between the American and Soviet sectors, and its famous four-language sign.",
-            "The reverse side — “You are entering the American sector.”",
+            "The reverse side, “You are entering the American sector.”",
             "Us at the Checkpoint Charlie guard house.",
             "The Topographie des Terrors, on the cleared site of the Gestapo and SS headquarters, with a preserved stretch of Wall out front.",
             "Beneath the walkway, the excavated cellars where the SS and Gestapo once held and interrogated prisoners.",
-            "One of the longest surviving stretches of the Wall — pitted and rebar-bared by years of souvenir-hunting “wall-peckers.”",
+            "One of the longest surviving stretches of the Wall, pitted and rebar-bared by years of souvenir-hunting “wall-peckers.”",
             "The Memorial to the Murdered Jews of Europe: Peter Eisenman's field of 2,711 concrete stelae, rising and falling like a swell underfoot.",
-            "The site of the Führerbunker, where Hitler spent his final days in 1945. Left deliberately unmarked and now, fittingly, a car park — the Memorial to the Murdered Jews of Europe stands just across the way.",
-            "Down Straße des 17. Juni to the Siegessäule — the Victory Column, its gilded Victoria catching the sun above the Tiergarten.",
-            "The Brandenburg Gate — once stranded in the Wall's no-man's-land, now Berlin's symbol of reunification.",
+            "The site of the Führerbunker, where Hitler spent his final days in 1945. Left deliberately unmarked and now, fittingly, a car park. The Memorial to the Murdered Jews of Europe stands just across the way.",
+            "Down Straße des 17. Juni to the Siegessäule, the Victory Column, its gilded Victoria catching the sun above the Tiergarten.",
+            "The Brandenburg Gate, once stranded in the Wall's no-man's-land, now Berlin's symbol of reunification.",
             "Up close: the Quadriga, victory driving her four-horse chariot atop the gate.",
-            "On the Kurfürstendamm, the Kaiser Wilhelm Memorial Church — its bomb-shattered spire left unrepaired as a memorial, nicknamed by Berliners “the hollow tooth.”",
+            "On the Kurfürstendamm, the Kaiser Wilhelm Memorial Church, its bomb-shattered spire left unrepaired as a memorial, nicknamed by Berliners “the hollow tooth.”",
           ]),
         },
         {
           id: "berlin-potsdam",
           title: "Half-Day Potsdam Discovery",
           description:
-            "Out to Potsdam: the House of the Wannsee Conference, the gardens of Sanssouci Palace, the Dutch Quarter and the Alexandrowka Russian colony, and the Glienicke Brücke — the Cold War 'Bridge of Spies.'",
+            "Out to Potsdam: the House of the Wannsee Conference, the gardens of Sanssouci Palace, the Dutch Quarter and the Alexandrowka Russian colony, and the Glienicke Brücke, the Cold War 'Bridge of Spies.'",
           isHighlight: false,
           sortOrder: 5,
           photos: slots("berlin-potsdam", 3),
@@ -162,7 +162,7 @@ export const sampleTrip: Trip = {
           id: "warsaw-poznan",
           title: "Poznań en route",
           description:
-            "A break in Poznań, one of Poland's oldest cities, to wander the colourful Old Market Square — where the Town Hall clock's mechanical goats butt heads at noon.",
+            "A break in Poznań, one of Poland's oldest cities, to wander the colourful Old Market Square, where the Town Hall clock's mechanical goats butt heads at noon.",
           isHighlight: false,
           sortOrder: 1,
           photos: slots("warsaw-poznan", 2),
@@ -199,13 +199,13 @@ export const sampleTrip: Trip = {
       dateFrom: "2026-06-24",
       dateTo: "2026-06-26",
       summary:
-        "A UNESCO-listed old town that came through the war virtually unscathed — and the base for the day at Auschwitz.",
+        "A UNESCO-listed old town that came through the war virtually unscathed, and the base for the day at Auschwitz.",
       activities: [
         {
           id: "krakow-czestochowa",
           title: "Częstochowa en route",
           description:
-            "On the drive south from Warsaw, a stop at the Jasna Góra monastery — Poland's great pilgrimage site, home to the Black Madonna.",
+            "On the drive south from Warsaw, a stop at the Jasna Góra monastery, Poland's great pilgrimage site, home to the Black Madonna.",
           isHighlight: false,
           sortOrder: 1,
           photos: slots("krakow-czestochowa", 2),
@@ -214,7 +214,7 @@ export const sampleTrip: Trip = {
           id: "krakow-auschwitz",
           title: "Auschwitz-Birkenau Memorial",
           description:
-            "A moving guided visit to the site of the former concentration camp — the heaviest, most important day of the trip.",
+            "A moving guided visit to the site of the former concentration camp, the heaviest, most important day of the trip.",
           isHighlight: true,
           sortOrder: 2,
           photos: slots("krakow-auschwitz", 6),
@@ -232,7 +232,7 @@ export const sampleTrip: Trip = {
           id: "krakow-wieliczka",
           title: "Wieliczka Salt Mine",
           description:
-            "Down 136 metres into a UNESCO-listed labyrinth carved entirely from salt — tunnels, a subterranean lake, and the astonishing Chapel of St. Kinga, salt from chandelier to altarpiece.",
+            "Down 136 metres into a UNESCO-listed labyrinth carved entirely from salt, tunnels, a subterranean lake, and the astonishing Chapel of St. Kinga, salt from chandelier to altarpiece.",
           isHighlight: false,
           sortOrder: 4,
           photos: slots("krakow-wieliczka", 3),
@@ -316,7 +316,7 @@ export const sampleTrip: Trip = {
           id: "vienna-free",
           title: "A free day in Vienna",
           description:
-            "Museums, shops, and Viennese coffee-house culture — a kaffee und kuchen in one of the city's elegant cafés.",
+            "Museums, shops, and Viennese coffee-house culture, a kaffee und kuchen in one of the city's elegant cafés.",
           isHighlight: false,
           sortOrder: 2,
           photos: slots("vienna-free", 1),
@@ -343,7 +343,7 @@ export const sampleTrip: Trip = {
       nights: 2,
       dateFrom: "2026-06-30",
       dateTo: "2026-07-02",
-      summary: "The 'Golden City' — the final stop before the journey home.",
+      summary: "The 'Golden City', the final stop before the journey home.",
       activities: [
         {
           id: "prague-telc",
@@ -376,7 +376,7 @@ export const sampleTrip: Trip = {
           id: "prague-czech-please",
           title: "Czech, please!",
           description:
-            "A guided culinary walk through three local eateries — savory to sweet, finishing with a traditional kolache.",
+            "A guided culinary walk through three local eateries, savory to sweet, finishing with a traditional kolache.",
           isHighlight: false,
           sortOrder: 4,
           photos: slots("prague-czech-please", 2),
@@ -408,7 +408,7 @@ export const sampleTrip: Trip = {
         {
           id: "berlin-return-depart",
           title: "Departure",
-          description: "The tour ended after breakfast — auf Wiedersehen, Berlin.",
+          description: "The tour ended after breakfast, auf Wiedersehen, Berlin.",
           isHighlight: false,
           sortOrder: 2,
           photos: [],

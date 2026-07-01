@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     default: "Andy Snowden",
     template: "%s · Andy Snowden",
   },
-  description: "The personal site of Andy Snowden — travel, work, and everything in between.",
+  description: "The personal site of Andy Snowden, travel, work, and everything in between.",
 };
 
 export default function RootLayout({

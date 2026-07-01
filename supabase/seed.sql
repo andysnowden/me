@@ -1,6 +1,6 @@
 -- Seed: Globus "The Best of Eastern Europe" (Tour RO 60620), June 19 – July 3, 2026.
 -- Route: Berlin → Warsaw → Kraków → Budapest → Vienna → Prague, returning to Berlin.
--- Idempotent — deleting the trip cascades to stops → activities → photos.
+-- Idempotent, deleting the trip cascades to stops → activities → photos.
 -- Mirrors src/data/sample-trip.ts. Photos are empty placeholder slots until uploaded.
 
 do $$
@@ -16,8 +16,8 @@ begin
   values
     ('eastern-europe',
      'The Best of Eastern Europe',
-     'Fourteen days, six countries — a guided Globus tour',
-     'Two weeks across Eastern Europe on Globus''s “Best of Eastern Europe” tour. Starting and ending in Berlin, the route ran through Poland — with a sobering day at Auschwitz — and on to Budapest, Vienna, and Prague. Here''s the journey, city by city.',
+     'Fourteen days, six countries, a guided Globus tour',
+     'Two weeks across Eastern Europe on Globus''s “Best of Eastern Europe” tour. Starting and ending in Berlin, the route ran through Poland, with a sobering day at Auschwitz, and on to Budapest, Vienna, and Prague. Here''s the journey, city by city.',
      'Globus', '2026-06-19', '2026-07-03', true)
   returning id into v_trip;
 
@@ -26,12 +26,12 @@ begin
   -- 1 · Berlin (start)
   insert into public.stops (trip_id, slug, city, country, lat, lng, "order", nights, date_from, date_to, summary)
   values (v_trip, 'berlin', 'Berlin', 'Germany', 52.52, 13.405, 1, 3, '2026-06-19', '2026-06-22',
-          'Where the tour began — and, arriving a day early, a self-guided first day among Berlin''s museums before meeting the group.')
+          'Where the tour began. We arrived a day early and spent a self-guided first day among Berlin''s museums before meeting the group.')
   returning id into v_stop;
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
   values (v_stop, 'Deutsches Technikmuseum',
-          'With a free day before the tour, a self-guided morning at the Deutsches Technikmuseum — aircraft, locomotives, and hands-on exhibits across its sprawling halls.', false, 1)
+          'With a free day before the tour, a self-guided morning at the Deutsches Technikmuseum, aircraft, locomotives, and hands-on exhibits across its sprawling halls.', false, 1)
   returning id into v_act;
   -- 08 was a duplicate of 07 and was removed.
   insert into public.photos (activity_id, src, sort_order)
@@ -40,7 +40,7 @@ begin
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
   values (v_stop, 'Museum für Naturkunde',
-          'Berlin''s Museum of Natural History, home to the world''s tallest mounted dinosaur skeleton. It didn''t quite win us over, though — hence only a couple of photos.', false, 2)
+          'Berlin''s Museum of Natural History, home to the world''s tallest mounted dinosaur skeleton. It didn''t quite win us over, though, hence only a couple of photos.', false, 2)
   returning id into v_act;
   insert into public.photos (activity_id, src, sort_order)
   select v_act, 'eastern-europe/berlin/naturkunde/naturkunde-' || lpad(g::text, 2, '0') || '.jpg', g
@@ -52,26 +52,26 @@ begin
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
   values (v_stop, 'Historic Berlin',
-          'A guided walk through Berlin''s twentieth-century history, roughly in this order: a marker tracing the line of the Berlin Wall, Checkpoint Charlie, the Topographie des Terrors beside a surviving stretch of the Wall, and the Memorial to the Murdered Jews of Europe. That memorial sits directly across from the deliberately unmarked site of the Führerbunker — said to be a quiet, pointed slight against Hitler. From there to the Brandenburg Gate, and finally the Kurfürstendamm. The Reichstag stayed out of reach behind a city event, and the State Opera House slipped past without a photo.', false, 4)
+          'A guided walk through Berlin''s twentieth-century history, roughly in this order: a marker tracing the line of the Berlin Wall, Checkpoint Charlie, the Topographie des Terrors beside a surviving stretch of the Wall, and the Memorial to the Murdered Jews of Europe. That memorial sits directly across from the deliberately unmarked site of the Führerbunker, said to be a quiet, pointed slight against Hitler. From there to the Brandenburg Gate, and finally the Kurfürstendamm. The Reichstag stayed out of reach behind a city event, and the State Opera House slipped past without a photo.', false, 4)
   returning id into v_act;
   insert into public.photos (activity_id, src, caption, sort_order) values
-  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-01.jpg', 'A double line of cobblestones and this bronze strip — “Berliner Mauer 1961–1989” — trace where the Wall once cut through the city.', 1),
+  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-01.jpg', 'A double line of cobblestones and this bronze strip, “Berliner Mauer 1961–1989”, trace where the Wall once cut through the city.', 1),
   (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-02.jpg', 'Checkpoint Charlie: the Cold War crossing between the American and Soviet sectors, and its famous four-language sign.', 2),
-  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-03.jpg', 'The reverse side — “You are entering the American sector.”', 3),
+  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-03.jpg', 'The reverse side, “You are entering the American sector.”', 3),
   (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-04.jpg', 'Us at the Checkpoint Charlie guard house.', 4),
   (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-05.jpg', 'The Topographie des Terrors, on the cleared site of the Gestapo and SS headquarters, with a preserved stretch of Wall out front.', 5),
   (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-06.jpg', 'Beneath the walkway, the excavated cellars where the SS and Gestapo once held and interrogated prisoners.', 6),
-  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-07.jpg', 'One of the longest surviving stretches of the Wall — pitted and rebar-bared by years of souvenir-hunting “wall-peckers.”', 7),
+  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-07.jpg', 'One of the longest surviving stretches of the Wall, pitted and rebar-bared by years of souvenir-hunting “wall-peckers.”', 7),
   (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-08.jpg', 'The Memorial to the Murdered Jews of Europe: Peter Eisenman''s field of 2,711 concrete stelae, rising and falling like a swell underfoot.', 8),
-  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-09.jpg', 'The site of the Führerbunker, where Hitler spent his final days in 1945. Left deliberately unmarked and now, fittingly, a car park — the Memorial to the Murdered Jews of Europe stands just across the way.', 9),
-  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-10.jpg', 'Down Straße des 17. Juni to the Siegessäule — the Victory Column, its gilded Victoria catching the sun above the Tiergarten.', 10),
-  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-11.jpg', 'The Brandenburg Gate — once stranded in the Wall''s no-man''s-land, now Berlin''s symbol of reunification.', 11),
+  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-09.jpg', 'The site of the Führerbunker, where Hitler spent his final days in 1945. Left deliberately unmarked and now, fittingly, a car park. The Memorial to the Murdered Jews of Europe stands just across the way.', 9),
+  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-10.jpg', 'Down Straße des 17. Juni to the Siegessäule, the Victory Column, its gilded Victoria catching the sun above the Tiergarten.', 10),
+  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-11.jpg', 'The Brandenburg Gate, once stranded in the Wall''s no-man''s-land, now Berlin''s symbol of reunification.', 11),
   (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-12.jpg', 'Up close: the Quadriga, victory driving her four-horse chariot atop the gate.', 12),
-  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-13.jpg', 'On the Kurfürstendamm, the Kaiser Wilhelm Memorial Church — its bomb-shattered spire left unrepaired as a memorial, nicknamed by Berliners “the hollow tooth.”', 13);
+  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-13.jpg', 'On the Kurfürstendamm, the Kaiser Wilhelm Memorial Church, its bomb-shattered spire left unrepaired as a memorial, nicknamed by Berliners “the hollow tooth.”', 13);
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
   values (v_stop, 'Half-Day Potsdam Discovery',
-          'Out to Potsdam: the House of the Wannsee Conference, the gardens of Sanssouci Palace, the Dutch Quarter and the Alexandrowka Russian colony, and the Glienicke Brücke — the Cold War ''Bridge of Spies.''', false, 5)
+          'Out to Potsdam: the House of the Wannsee Conference, the gardens of Sanssouci Palace, the Dutch Quarter and the Alexandrowka Russian colony, and the Glienicke Brücke, the Cold War ''Bridge of Spies.''', false, 5)
   returning id into v_act;
   insert into public.photos (activity_id, sort_order) select v_act, g from generate_series(1, 3) g;
 
@@ -83,7 +83,7 @@ begin
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
   values (v_stop, 'Poznań en route',
-          'A break in Poznań, one of Poland''s oldest cities, to wander the colourful Old Market Square — where the Town Hall clock''s mechanical goats butt heads at noon.', false, 1)
+          'A break in Poznań, one of Poland''s oldest cities, to wander the colourful Old Market Square, where the Town Hall clock''s mechanical goats butt heads at noon.', false, 1)
   returning id into v_act;
   insert into public.photos (activity_id, sort_order) select v_act, g from generate_series(1, 2) g;
 
@@ -102,18 +102,18 @@ begin
   -- 3 · Kraków
   insert into public.stops (trip_id, slug, city, country, lat, lng, "order", nights, date_from, date_to, summary)
   values (v_trip, 'krakow', 'Kraków', 'Poland', 50.0647, 19.945, 3, 2, '2026-06-24', '2026-06-26',
-          'A UNESCO-listed old town that came through the war virtually unscathed — and the base for the day at Auschwitz.')
+          'A UNESCO-listed old town that came through the war virtually unscathed, and the base for the day at Auschwitz.')
   returning id into v_stop;
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
   values (v_stop, 'Częstochowa en route',
-          'On the drive south from Warsaw, a stop at the Jasna Góra monastery — Poland''s great pilgrimage site, home to the Black Madonna.', false, 1)
+          'On the drive south from Warsaw, a stop at the Jasna Góra monastery, Poland''s great pilgrimage site, home to the Black Madonna.', false, 1)
   returning id into v_act;
   insert into public.photos (activity_id, sort_order) select v_act, g from generate_series(1, 2) g;
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
   values (v_stop, 'Auschwitz-Birkenau Memorial',
-          'A moving guided visit to the site of the former concentration camp — the heaviest, most important day of the trip.', true, 2)
+          'A moving guided visit to the site of the former concentration camp, the heaviest, most important day of the trip.', true, 2)
   returning id into v_act;
   insert into public.photos (activity_id, sort_order) select v_act, g from generate_series(1, 6) g;
 
@@ -125,7 +125,7 @@ begin
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
   values (v_stop, 'Wieliczka Salt Mine',
-          'Down 136 metres into a UNESCO-listed labyrinth carved entirely from salt — tunnels, a subterranean lake, and the astonishing Chapel of St. Kinga, salt from chandelier to altarpiece.', false, 4)
+          'Down 136 metres into a UNESCO-listed labyrinth carved entirely from salt, tunnels, a subterranean lake, and the astonishing Chapel of St. Kinga, salt from chandelier to altarpiece.', false, 4)
   returning id into v_act;
   insert into public.photos (activity_id, sort_order) select v_act, g from generate_series(1, 3) g;
 
@@ -173,7 +173,7 @@ begin
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
   values (v_stop, 'A free day in Vienna',
-          'Museums, shops, and Viennese coffee-house culture — a kaffee und kuchen in one of the city''s elegant cafés.', false, 2)
+          'Museums, shops, and Viennese coffee-house culture, a kaffee und kuchen in one of the city''s elegant cafés.', false, 2)
   returning id into v_act;
   insert into public.photos (activity_id, sort_order) select v_act, g from generate_series(1, 1) g;
 
@@ -186,7 +186,7 @@ begin
   -- 6 · Prague
   insert into public.stops (trip_id, slug, city, country, lat, lng, "order", nights, date_from, date_to, summary)
   values (v_trip, 'prague', 'Prague', 'Czech Republic', 50.0755, 14.4378, 6, 2, '2026-06-30', '2026-07-02',
-          'The ''Golden City'' — the final stop before the journey home.')
+          'The ''Golden City'', the final stop before the journey home.')
   returning id into v_stop;
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
@@ -209,7 +209,7 @@ begin
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
   values (v_stop, 'Czech, please!',
-          'A guided culinary walk through three local eateries — savory to sweet, finishing with a traditional kolache.', false, 4)
+          'A guided culinary walk through three local eateries, savory to sweet, finishing with a traditional kolache.', false, 4)
   returning id into v_act;
   insert into public.photos (activity_id, sort_order) select v_act, g from generate_series(1, 2) g;
 
@@ -227,5 +227,5 @@ begin
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
   values (v_stop, 'Departure',
-          'The tour ended after breakfast — auf Wiedersehen, Berlin.', false, 2);
+          'The tour ended after breakfast, auf Wiedersehen, Berlin.', false, 2);
 end $$;

@@ -26,7 +26,7 @@ export default async function VacationsPage() {
           Trips &amp; journeys
         </h1>
         <p className="mt-4 text-lg leading-relaxed text-muted">
-          Mapped out and told stop by stop — the places, the days, the photos.
+          Mapped out and told stop by stop, the places, the days, the photos.
         </p>
       </header>
 

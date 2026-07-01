@@ -41,7 +41,7 @@ export default function PhotoGallery({ photos }: { photos: Photo[] }) {
               {p.caption && (
                 <span
                   aria-hidden
-                  title="Has a note — click to read"
+                  title="Has a note, click to read"
                   className="absolute bottom-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/55 text-xs font-semibold text-white/90 backdrop-blur-sm"
                 >
                   i
