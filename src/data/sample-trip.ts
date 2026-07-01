@@ -8,7 +8,7 @@ import type { Photo, Trip } from "@/lib/types";
 // The app reads this only when Supabase env vars are absent (see src/lib/trips.ts);
 // the live site reads the matching seed in supabase/seed.sql.
 
-// Helper: make N empty photo slots with a stable id prefix.
+// Helper: make N empty photo slots with a stable id prefix (awaiting upload).
 function slots(prefix: string, n: number): Photo[] {
   return Array.from({ length: n }, (_, i) => ({
     id: `${prefix}-${i + 1}`,
@@ -16,6 +16,19 @@ function slots(prefix: string, n: number): Photo[] {
     caption: null,
     sortOrder: i + 1,
   }));
+}
+
+// Helper: N uploaded photos in the trip-photos bucket, named <group>-NN.jpg.
+function stored(dir: string, group: string, n: number): Photo[] {
+  return Array.from({ length: n }, (_, i) => {
+    const nn = String(i + 1).padStart(2, "0");
+    return {
+      id: `${group}-${nn}`,
+      src: `${dir}/${group}/${group}-${nn}.jpg`,
+      caption: null,
+      sortOrder: i + 1,
+    };
+  });
 }
 
 export const sampleTrip: Trip = {
@@ -51,7 +64,7 @@ export const sampleTrip: Trip = {
             "With a free day before the tour, a self-guided morning at the Deutsches Technikmuseum — aircraft, locomotives, and hands-on exhibits across its sprawling halls.",
           isHighlight: false,
           sortOrder: 1,
-          photos: slots("berlin-technikmuseum", 8),
+          photos: stored("eastern-europe/berlin", "technikmuseum", 12),
         },
         {
           id: "berlin-naturkunde",
@@ -60,7 +73,7 @@ export const sampleTrip: Trip = {
             "Berlin's Museum of Natural History, home to the world's tallest mounted dinosaur skeleton. It didn't quite win us over, though — hence only a couple of photos.",
           isHighlight: false,
           sortOrder: 2,
-          photos: slots("berlin-naturkunde", 2),
+          photos: stored("eastern-europe/berlin", "naturkunde", 2),
         },
         {
           id: "berlin-welcome",
