@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+/* Leaflet base styles (self-hosted via the npm package, no CDN). */
+@import "leaflet/dist/leaflet.css";
+
+@theme {
+  --color-bg: #fbfaf8;
+  --color-surface: #ffffff;
+  --color-ink: #1c1917; /* stone-900 */
+  --color-muted: #78716c; /* stone-500 */
+  --color-line: #e7e5e4; /* stone-200 */
+  --color-accent: #b4530b; /* burnt sienna */
+  --color-accent-soft: #fdf1e7;
+  --color-ink-950: #0c0a09;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Display headings use the serif face. */
+.font-display {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+}
+
+/* Leaflet renders above nothing important; keep it below sticky headers. */
+.leaflet-container {
+  z-index: 0;
+  background: #e8eef0;
+  font-family: var(--font-sans);
+}
