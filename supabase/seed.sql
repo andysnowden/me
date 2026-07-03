@@ -82,7 +82,9 @@ begin
   values (v_stop, 'Half-Day Potsdam Discovery',
           'Out to Potsdam: the House of the Wannsee Conference, the gardens of Sanssouci Palace, the Dutch Quarter and the Alexandrowka Russian colony, and the Glienicke Brücke, the Cold War ''Bridge of Spies.''', false, 5)
   returning id into v_act;
-  insert into public.photos (activity_id, sort_order) select v_act, g from generate_series(1, 3) g;
+  insert into public.photos (activity_id, src, sort_order)
+  select v_act, 'eastern-europe/berlin/potsdam/potsdam-' || lpad(g::text, 2, '0') || '.jpg', g
+  from generate_series(1, 10) g;
 
   -- 2 · Warsaw
   insert into public.stops (trip_id, slug, city, country, lat, lng, "order", nights, date_from, date_to, summary)

@@ -151,7 +151,7 @@ export const sampleTrip: Trip = {
             "Out to Potsdam: the House of the Wannsee Conference, the gardens of Sanssouci Palace, the Dutch Quarter and the Alexandrowka Russian colony, and the Glienicke Brücke, the Cold War 'Bridge of Spies.'",
           isHighlight: false,
           sortOrder: 5,
-          photos: slots("berlin-potsdam", 3),
+          photos: captioned("eastern-europe/berlin", "potsdam", Array(10).fill(null)),
         },
       ],
     },
