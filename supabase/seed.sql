@@ -104,7 +104,14 @@ begin
   values (v_stop, 'Poznań en route',
           'A break in Poznań, one of Poland''s oldest cities, to wander the colourful Old Market Square, where the Town Hall clock''s mechanical goats butt heads at noon.', false, 1)
   returning id into v_act;
-  insert into public.photos (activity_id, sort_order) select v_act, g from generate_series(1, 2) g;
+  insert into public.photos (activity_id, src, video_src, caption, sort_order) values
+  (v_act, 'eastern-europe/warsaw/poznan/poznan-01.jpg', null, 'Making our way through the old town toward the Stary Rynek, Poznań''s Old Market Square, flags hanging from the merchant houses.', 1),
+  (v_act, 'eastern-europe/warsaw/poznan/poznan-02.jpg', null, 'The square opens up, the Renaissance Town Hall with its arcaded loggia on the right, colourful merchant houses ranged down the far side.', 2),
+  (v_act, 'eastern-europe/warsaw/poznan/poznan-03.jpg', null, 'The Town Hall up close. Its tower was under wraps for restoration, but the painted Renaissance façade and its little turrets still held the square.', 3),
+  (v_act, 'eastern-europe/warsaw/poznan/poznan-04.jpg', 'eastern-europe/warsaw/poznan/poznan-04.mp4', 'Every day at noon, two mechanical billy goats emerge above the Town Hall clock and butt heads twelve times, Poznań''s best-loved tradition. We waited for midday to catch it.', 4),
+  (v_act, 'eastern-europe/warsaw/poznan/poznan-05.jpg', null, 'A flower-draped restaurant front under the arcades just off the square, tables set out in the sun.', 5),
+  (v_act, 'eastern-europe/warsaw/poznan/poznan-06.jpg', null, 'One of the bronze fountains around the square, a helmeted, spear-bearing Mars, the god of war, mid-stride.', 6),
+  (v_act, 'eastern-europe/warsaw/poznan/poznan-07.jpg', null, 'A last look across the Stary Rynek: café umbrellas, the Proserpina Fountain, and the scaffolded tower rising over the pastel houses.', 7);
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
   values (v_stop, 'Old Town & St. John''s Cathedral',

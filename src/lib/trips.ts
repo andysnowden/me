@@ -45,6 +45,7 @@ type ActivityRow = {
 type PhotoRow = {
   id: string;
   src: string | null;
+  video_src: string | null;
   caption: string | null;
   width: number | null;
   height: number | null;
@@ -53,12 +54,12 @@ type PhotoRow = {
 
 const TRIP_SELECT = `
   id, slug, title, subtitle, summary, tour_operator, start_date, end_date,
-  photos ( id, src, caption, width, height, sort_order ),
+  photos ( id, src, video_src, caption, width, height, sort_order ),
   stops (
     id, slug, city, country, lat, lng, "order", nights, date_from, date_to, summary,
     activities (
       id, title, description, is_highlight, sort_order,
-      photos ( id, src, caption, width, height, sort_order )
+      photos ( id, src, video_src, caption, width, height, sort_order )
     )
   )
 `;
@@ -67,6 +68,7 @@ function mapPhoto(p: PhotoRow): Photo {
   return {
     id: p.id,
     src: p.src,
+    videoSrc: p.video_src,
     caption: p.caption,
     width: p.width,
     height: p.height,

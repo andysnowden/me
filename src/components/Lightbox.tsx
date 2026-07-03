@@ -44,7 +44,8 @@ export default function Lightbox({
 
   const photo = photos[index];
   const url = photoUrl(photo.src);
-  if (!url) return null;
+  const videoUrl = photoUrl(photo.videoSrc);
+  if (!url && !videoUrl) return null;
 
   return (
     <div
@@ -89,15 +90,27 @@ export default function Lightbox({
           className="relative h-full w-full max-w-5xl"
           onClick={(e) => e.stopPropagation()}
         >
-          <Image
-            src={url}
-            alt={photo.caption ?? ""}
-            fill
-            sizes="90vw"
-            quality={90}
-            priority
-            className="object-contain"
-          />
+          {videoUrl ? (
+            <video
+              key={photo.id}
+              src={videoUrl}
+              poster={url ?? undefined}
+              controls
+              autoPlay
+              playsInline
+              className="absolute inset-0 h-full w-full object-contain"
+            />
+          ) : (
+            <Image
+              src={url!}
+              alt={photo.caption ?? ""}
+              fill
+              sizes="90vw"
+              quality={90}
+              priority
+              className="object-contain"
+            />
+          )}
         </div>
 
         {count > 1 && (

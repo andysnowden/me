@@ -6,6 +6,11 @@ export type Photo = {
   id: string;
   /** Storage path within the `trip-photos` bucket, or an absolute URL. */
   src: string | null;
+  /**
+   * Optional playable video (storage path or URL). When set, `src` is the
+   * poster still and the lightbox plays this file instead of showing an image.
+   */
+  videoSrc?: string | null;
   caption: string | null;
   /** Optional intrinsic dimensions, used to reserve layout space. */
   width?: number | null;

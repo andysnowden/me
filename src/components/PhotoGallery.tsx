@@ -28,7 +28,15 @@ export default function PhotoGallery({ photos }: { photos: Photo[] }) {
               onClick={() =>
                 setOpenIndex(viewable.findIndex((v) => v.id === p.id))
               }
-              aria-label={p.caption ? `View: ${p.caption}` : "View photo"}
+              aria-label={
+                p.videoSrc
+                  ? p.caption
+                    ? `Play video: ${p.caption}`
+                    : "Play video"
+                  : p.caption
+                    ? `View: ${p.caption}`
+                    : "View photo"
+              }
               className="group relative aspect-4/3 w-full cursor-zoom-in overflow-hidden rounded-xl border border-line bg-accent-soft"
             >
               <Image
@@ -38,6 +46,22 @@ export default function PhotoGallery({ photos }: { photos: Photo[] }) {
                 sizes="(max-width: 640px) 50vw, 33vw"
                 className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
               />
+              {p.videoSrc && (
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 flex items-center justify-center"
+                >
+                  <span className="flex h-14 w-14 items-center justify-center rounded-full bg-black/50 text-white ring-1 ring-white/40 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="ml-1 h-6 w-6"
+                    >
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </span>
+                </span>
+              )}
               {p.caption && (
                 <span
                   aria-hidden

@@ -187,7 +187,58 @@ export const sampleTrip: Trip = {
             "A break in Poznań, one of Poland's oldest cities, to wander the colourful Old Market Square, where the Town Hall clock's mechanical goats butt heads at noon.",
           isHighlight: false,
           sortOrder: 1,
-          photos: slots("warsaw-poznan", 2),
+          photos: [
+            {
+              id: "poznan-01",
+              src: "eastern-europe/warsaw/poznan/poznan-01.jpg",
+              caption:
+                "Making our way through the old town toward the Stary Rynek, Poznań's Old Market Square, flags hanging from the merchant houses.",
+              sortOrder: 1,
+            },
+            {
+              id: "poznan-02",
+              src: "eastern-europe/warsaw/poznan/poznan-02.jpg",
+              caption:
+                "The square opens up, the Renaissance Town Hall with its arcaded loggia on the right, colourful merchant houses ranged down the far side.",
+              sortOrder: 2,
+            },
+            {
+              id: "poznan-03",
+              src: "eastern-europe/warsaw/poznan/poznan-03.jpg",
+              caption:
+                "The Town Hall up close. Its tower was under wraps for restoration, but the painted Renaissance façade and its little turrets still held the square.",
+              sortOrder: 3,
+            },
+            {
+              id: "poznan-04",
+              src: "eastern-europe/warsaw/poznan/poznan-04.jpg",
+              videoSrc: "eastern-europe/warsaw/poznan/poznan-04.mp4",
+              caption:
+                "Every day at noon, two mechanical billy goats emerge above the Town Hall clock and butt heads twelve times, Poznań's best-loved tradition. We waited for midday to catch it.",
+              sortOrder: 4,
+            },
+            {
+              id: "poznan-05",
+              src: "eastern-europe/warsaw/poznan/poznan-05.jpg",
+              caption:
+                "A flower-draped restaurant front under the arcades just off the square, tables set out in the sun.",
+              sortOrder: 5,
+            },
+            {
+              id: "poznan-06",
+              src: "eastern-europe/warsaw/poznan/poznan-06.jpg",
+              caption:
+                "One of the bronze fountains around the square, a helmeted, spear-bearing Mars, the god of war, mid-stride.",
+              sortOrder: 6,
+            },
+            {
+              id: "poznan-07",
+              src: "eastern-europe/warsaw/poznan/poznan-07.jpg",
+              caption:
+                "A last look across the Stary Rynek: café umbrellas, the Proserpina Fountain, and the scaffolded tower rising over the pastel houses.",
+              sortOrder: 7,
+            },
+          ],
         },
         {
           id: "warsaw-oldtown",
