@@ -82,9 +82,17 @@ begin
   values (v_stop, 'Half-Day Potsdam Discovery',
           'Out to Potsdam: the House of the Wannsee Conference, the gardens of Sanssouci Palace, the Dutch Quarter and the Alexandrowka Russian colony, and the Glienicke Brücke, the Cold War ''Bridge of Spies.''', false, 5)
   returning id into v_act;
-  insert into public.photos (activity_id, src, sort_order)
-  select v_act, 'eastern-europe/berlin/potsdam/potsdam-' || lpad(g::text, 2, '0') || '.jpg', g
-  from generate_series(1, 10) g;
+  insert into public.photos (activity_id, src, caption, sort_order) values
+  (v_act, 'eastern-europe/berlin/potsdam/potsdam-01.jpg', 'The House of the Wannsee Conference. In this lakeside villa, on 20 January 1942, fifteen senior Nazi officials met for barely ninety minutes to coordinate the “Final Solution to the Jewish Question.” I had just watched the film Nuremberg, and standing here was surreal. A place this beautiful was where the murder of millions was set in motion.', 1),
+  (v_act, 'eastern-europe/berlin/potsdam/potsdam-02.jpg', 'Inside, a facsimile of Hitler''s letter of 1 September 1939 authorising the murder of the “incurably ill,” dated to the very day the war began. It is the only surviving written order from Hitler to kill an entire group of people.', 2),
+  (v_act, 'eastern-europe/berlin/potsdam/potsdam-03.jpg', 'Göring''s authorisation of 31 July 1941 tasking Reinhard Heydrich with preparing a “comprehensive solution of the Jewish question.” This is the order that led Heydrich to convene the conference in this house. Seeing the actual paperwork, lives reduced to bureaucratic language, was the hardest part of the day.', 3),
+  (v_act, 'eastern-europe/berlin/potsdam/potsdam-04.jpg', 'Into Potsdam''s old centre, and a lighter mood: the rebuilt City Palace, now the Brandenburg state parliament, entered through the Fortuna Portal with its gilded figure of Fortune on top.', 4),
+  (v_act, 'eastern-europe/berlin/potsdam/potsdam-05.jpg', 'The obelisk on the Alter Markt, Potsdam''s historic market square, framed by the Potsdam Museum and, in yellow, the Museum Barberini.', 5),
+  (v_act, 'eastern-europe/berlin/potsdam/potsdam-06.jpg', 'The Baroque Old Town Hall on the same square, crowned by a gilded Atlas shouldering the globe. It now forms part of the Potsdam Museum.', 6),
+  (v_act, 'eastern-europe/berlin/potsdam/potsdam-07.jpg', 'St. Nicholas'' Church, its huge green dome the work of Karl Friedrich Schinkel, rising behind the obelisk.', 7),
+  (v_act, 'eastern-europe/berlin/potsdam/potsdam-08.jpg', 'On to Sanssouci. Twin colonnades frame the park, with a hilltop folly closing the view in the distance.', 8),
+  (v_act, 'eastern-europe/berlin/potsdam/potsdam-09.jpg', 'Sanssouci itself, Frederick the Great''s summer palace. Its name, French for “without a care,” runs across the front, where sculpted atlantes stand in for columns along the golden-yellow façade.', 9),
+  (v_act, 'eastern-europe/berlin/potsdam/potsdam-10.jpg', 'The view from the terrace down over the fountain and the great parterre, the gardens rolling out toward the town.', 10);
 
   -- 2 · Warsaw
   insert into public.stops (trip_id, slug, city, country, lat, lng, "order", nights, date_from, date_to, summary)
