@@ -65,7 +65,7 @@ function StopBlock({ stop, isLast }: { stop: Stop; isLast: boolean }) {
                 )}
               </div>
               {activity.description && (
-                <p className="mt-1 max-w-2xl text-sm leading-relaxed text-muted">
+                <p className="mt-1 max-w-2xl whitespace-pre-line text-sm leading-relaxed text-muted">
                   {activity.description}
                 </p>
               )}

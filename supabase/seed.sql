@@ -132,15 +132,34 @@ begin
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
   values (v_stop, 'Old Town & St. John''s Cathedral',
-          'A guided walk through the rebuilt medieval Stare Miasto and the Cathedral of St. John.', false, 2)
+          'A guided walk through the rebuilt medieval Stare Miasto and the Cathedral of St. John, on into the New Town and past the city''s great memorials to the Warsaw Uprising and the Ghetto Heroes.', false, 2)
   returning id into v_act;
-  insert into public.photos (activity_id, sort_order) select v_act, g from generate_series(1, 2) g;
+  insert into public.photos (activity_id, src, caption, sort_order) values
+  (v_act, 'eastern-europe/warsaw/oldtown/oldtown-01.jpg', 'Castle Square, where the Old Town begins. Sigismund''s Column, raised in 1644 to King Sigismund III Vasa, who moved the capital from Kraków to Warsaw, stands over the pastel merchant houses.', 1),
+  (v_act, 'eastern-europe/warsaw/oldtown/oldtown-02.jpg', 'The Royal Castle on Castle Square, seat of Poland''s kings and parliament. Blown up by the Germans in 1944, it was rebuilt from nothing between 1971 and 1984.', 2),
+  (v_act, 'eastern-europe/warsaw/oldtown/oldtown-03.jpg', 'The brick Gothic front of St. John''s Archcathedral, the oldest church in Warsaw and, like the rest of the Old Town, raised again after the war. The banner honours the beatified Cardinal Stefan Wyszyński.', 3),
+  (v_act, 'eastern-europe/warsaw/oldtown/oldtown-04.jpg', 'Inside St. John''s, the whitewashed Gothic nave under its ribbed vault, hung with Polish military and heraldic banners above the checkerboard aisle.', 4),
+  (v_act, 'eastern-europe/warsaw/oldtown/oldtown-05.jpg', 'Tall stained-glass windows light the side aisle, over a marble monument and bronze memorials to figures of Polish history.', 5),
+  (v_act, 'eastern-europe/warsaw/oldtown/oldtown-06.jpg', 'Looking up into the star-vaulting, ranks of red-and-white banners carrying the Polish eagle and old coats of arms.', 6),
+  (v_act, 'eastern-europe/warsaw/oldtown/oldtown-07.jpg', 'The chancel and its carved choir stalls, a venerated icon of the Madonna set above the high altar between the stained glass.', 7),
+  (v_act, 'eastern-europe/warsaw/oldtown/oldtown-08.jpg', 'At the west end, the organ on its gallery above the door, banners hanging the length of the nave.', 8),
+  (v_act, 'eastern-europe/warsaw/oldtown/oldtown-09.jpg', 'The Old Town Market Square, ringed by reconstructed burghers'' houses in candy colours, cafe umbrellas filling the middle. The Museum of Warsaw lines the far side.', 9),
+  (v_act, 'eastern-europe/warsaw/oldtown/oldtown-10.jpg', 'The Warsaw Mermaid at the heart of the square, sword and shield raised. The Syrenka is the city''s emblem and, by legend, its sworn protector.', 10),
+  (v_act, 'eastern-europe/warsaw/oldtown/oldtown-11.jpg', 'The Barbican, the round red-brick outwork that guarded the gate between the Old and New Towns, rebuilt after the war from old prints and paintings.', 11),
+  (v_act, 'eastern-europe/warsaw/oldtown/oldtown-12.jpg', 'Up on the restored medieval walls that ring the Old Town, the rampart walk running along the battlements.', 12),
+  (v_act, 'eastern-europe/warsaw/oldtown/oldtown-13.jpg', 'Into the New Town, to the house on ulica Freta where Maria Skłodowska-Curie was born in 1867, now a museum to the twice Nobel-winning scientist.', 13),
+  (v_act, 'eastern-europe/warsaw/oldtown/oldtown-17.jpg', 'The Monument to the Warsaw Uprising on Krasiński Square: bronze insurgents charging out from beneath a great tilting slab, the columned Supreme Court behind.', 14),
+  (v_act, 'eastern-europe/warsaw/oldtown/oldtown-14.jpg', 'Closer in on the same monument, fighters breaking from the rubble with a chaplain at their side.', 15),
+  (v_act, 'eastern-europe/warsaw/oldtown/oldtown-15.jpg', 'The Monument to the Ghetto Heroes, on the ground of the former Warsaw Ghetto. Nathan Rapoport''s 1948 memorial to the fighters of the 1943 uprising, a menorah set before it. Willy Brandt knelt here in 1970.', 16),
+  (v_act, 'eastern-europe/warsaw/oldtown/oldtown-16.jpg', 'The monument to Jan Kiliński, the master shoemaker who led Warsaw''s townsfolk in the 1794 uprising against the Russian garrison, sabre raised on Podwale by the Old Town walls.', 17);
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
   values (v_stop, 'Chopin concert',
-          'An evening recital of Chopin''s compositions in an elegant Warsaw hall.', false, 3)
+          'An evening Chopin recital by Prof. Maciej Poliszewski at the Fryderyk Concert Hall, a program running from the G minor Ballade and the Op. 41 Mazurkas to the “Heroic” Polonaise.', false, 3)
   returning id into v_act;
-  insert into public.photos (activity_id, sort_order) select v_act, g from generate_series(1, 1) g;
+  insert into public.photos (activity_id, src, caption, sort_order) values
+  (v_act, 'eastern-europe/warsaw/chopin/chopin-01.jpg', 'The Fryderyk Concert Hall, chandeliers and portraits of Chopin looking on over the grand piano, just before the recital began.', 1),
+  (v_act, 'eastern-europe/warsaw/chopin/chopin-02.jpg', 'The evening''s program, all Chopin: the Ballade, three Mazurkas, a Scherzo, three Waltzes, and the “Heroic” Polonaise.', 2);
 
   -- 3 · Kraków
   insert into public.stops (trip_id, slug, city, country, lat, lng, "order", nights, date_from, date_to, summary)
@@ -152,13 +171,55 @@ begin
   values (v_stop, 'Częstochowa en route',
           'On the drive south from Warsaw, a stop at the Jasna Góra monastery, Poland''s great pilgrimage site, home to the Black Madonna.', false, 1)
   returning id into v_act;
-  insert into public.photos (activity_id, sort_order) select v_act, g from generate_series(1, 2) g;
+  insert into public.photos (activity_id, src, caption, sort_order) values
+  (v_act, 'eastern-europe/krakow/czestochowa/czestochowa-01.jpg', 'The approach to Jasna Góra, a broad avenue walled in brick and lined with the flags of pilgrim nations, the monastery tower waiting at the far end.', 1),
+  (v_act, 'eastern-europe/krakow/czestochowa/czestochowa-02.jpg', 'The monastery''s bell tower, at 106 metres the tallest historic church tower in Poland, rising white above the ramparts.', 2),
+  (v_act, 'eastern-europe/krakow/czestochowa/czestochowa-03.jpg', 'One of the great vaulted halls inside, hung with the embroidered banners of pilgrimage groups who have walked here for centuries.', 3),
+  (v_act, 'eastern-europe/krakow/czestochowa/czestochowa-04.jpg', 'A case in the monastery museum: historic musical instruments from Jasna Góra''s long tradition of sacred music, violins and harps and horns behind glass.', 4),
+  (v_act, 'eastern-europe/krakow/czestochowa/czestochowa-05.jpg', 'A painted copy of the Black Madonna of Częstochowa. Mass was underway in the chapel where the original hangs, so this faithful reproduction was as close as the camera could get.', 5);
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
   values (v_stop, 'Auschwitz-Birkenau Memorial',
-          'A moving guided visit to the site of the former concentration camp, the heaviest, most important day of the trip.', true, 2)
+          'Auschwitz-Birkenau was the largest of the Nazi German concentration and extermination camps. Between 1940 and 1945 at least 1.3 million people were deported here and roughly 1.1 million were murdered, about nine in ten of them Jews, along with Poles, Roma, Soviet prisoners of war, and others. Coming here is not sightseeing. It is a place to stand with the people who were taken here, and to hold on to what it asks of anyone who comes: that this was carried out by a modern state and ordinary people, within living memory, and that remembering it honestly is part of how it is kept from happening again. Visiting was one of the reasons I chose this route. It was the most important day of the trip, and the hardest.
+
+A note on the photographs that follow: some are hard to look at. Inside several of the buildings we were asked not to take pictures, out of respect for the dead, and those rooms are not shown here.', false, 2)
   returning id into v_act;
-  insert into public.photos (activity_id, sort_order) select v_act, g from generate_series(1, 6) g;
+  insert into public.photos (activity_id, src, caption, sort_order) values
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-01.jpg', 'The gate into Auschwitz I, and its iron sign: ARBEIT MACHT FREI, "work sets you free." It was a lie. The words hung over the entrance the work columns passed twice a day, and almost no one was ever set free.', 1),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-02.jpg', 'Arriving at Auschwitz I under the willows. The site is a museum and memorial now, but these brick blocks were the camp itself, built up around a former Polish army barracks.', 2),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-03.jpg', 'Walking in along the perimeter, a wooden fence on one side and a guard tower ahead. Everything here was built to keep people from leaving.', 3),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-04.jpg', 'Rows of barracks behind the double line of electrified fence, the concrete posts curving inward to carry the wire.', 4),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-05.jpg', 'A street between the blocks. Part of what unsettles you here is how ordinary it looks: brick buildings, trees, gravel roads, all built to run a machine of murder.', 5),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-06.jpg', 'Between the two-story blocks. Each held hundreds of prisoners in conditions meant to kill slowly, through hunger, cold, and disease.', 6),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-07.jpg', 'The tree-lined road through the camp, quiet now.', 7),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-08.jpg', 'Another of the camp streets. The blocks are numbered, and many now hold the museum''s exhibitions.', 8),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-09.jpg', 'One of the brick blocks. Several are given over to the main exhibition, room after room documenting who was brought here and what was done to them.', 9),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-10.jpg', 'A map of the deportations: lines drawn from ghettos, transit camps, and prisons across occupied Europe, all converging on Auschwitz.', 10),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-11.jpg', 'The memorial''s plain statement of the toll. At least 1.3 million people deported, about 1.1 million killed, some 90 percent of them Jews, most murdered in the gas chambers.', 11),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-12.jpg', 'Inside the exhibition, walls of photographs of the deportations, beside a column counting the numbers brought from each country.', 12),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-13.jpg', 'An enlarged photograph from 1944: families with their bundles beside the freight cars, just after arrival, before they understood what waited.', 13),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-14.jpg', '"Before the selection." Newly arrived people massed on the Birkenau ramp, waiting for the SS to divide them, most sent straight to the gas.', 14),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-15.jpg', '"After the selection." The same ramp cleared, SS men among the cattle cars and the belongings left on the ground.', 15),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-16.jpg', 'A drawing in the exhibition of the deportees, huddled and afraid, a human answer to the perpetrators'' own photographs.', 16),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-17.jpg', 'Behind glass, empty canisters of Zyklon B, the poison the SS used to murder people in the gas chambers.', 17),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-18.jpg', 'Confiscated suitcases, many still painted with their owners'' names and addresses, packed by people who were told they were being resettled.', 18),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-19.jpg', 'A corridor inside one of the blocks, the floor worn smooth by prisoners once and by those who come to remember them now.', 19),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-20.jpg', 'A room kept furnished as it was: a single bed, a cupboard, a table, spare and cold.', 20),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-21.jpg', 'Worn blankets spread across a barrack floor, beneath a photograph from the camp''s final days.', 21),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-22.jpg', 'The Death Wall, between Blocks 10 and 11, where the SS shot thousands of prisoners. People still lay wreaths and candles here.', 22),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-23.jpg', 'A watchtower set into the perimeter wall, the electrified fence running out to either side.', 23),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-24.jpg', 'The narrow ground between two blocks, hemmed in by the double electrified fence.', 24),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-25.jpg', 'The fences run the length of the camp, post after post, wire above wire.', 25),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-26.jpg', 'The entrance to the gas chamber and crematorium of Auschwitz I, dug into an earth mound. Inside, we were asked not to photograph, and it is right that some places stay unphotographed.', 26),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-27.jpg', 'Three kilometres away lies Birkenau, or Auschwitz II, built when Auschwitz I could no longer hold the numbers. This is its gatehouse from the road outside.', 27),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-28.jpg', 'The gatehouse from within, the arch the prisoners called the Gate of Death, the railway running straight through it into the camp.', 28),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-29.jpg', 'The single track leading in, vanishing toward the horizon. The trains stopped on this ramp, and the selections were made where they stood.', 29),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-30.jpg', 'One of the surviving wooden barracks. They were built to a design for army horse stables, and each was packed with hundreds of people.', 30),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-31.jpg', 'Inside a barrack, the brick flue that ran down the middle for a heat that rarely came. Prisoners were crammed onto wooden bunks along the walls.', 31),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-32.jpg', 'The latrine barrack, a long concrete bench pierced with holes. Prisoners were allowed here only briefly, and only at set times.', 32),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-33.jpg', 'The scale of Birkenau is hard to take in. Paths and a watchtower reach out across a field where hundreds of barracks once stood.', 33),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-34.jpg', 'Where the barracks were pulled down or burned, the brick chimneys and lines of fence posts still stand across the grass.', 34),
+  (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-35.jpg', 'A last look: one fence post, its insulators and wire, against an open sky. The camp was liberated in January 1945, and what remains is kept so that no one can ever say it did not happen.', 35);
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
   values (v_stop, 'Kraków city tour',
