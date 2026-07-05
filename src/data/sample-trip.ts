@@ -63,7 +63,7 @@ export const sampleTrip: Trip = {
   tourOperator: "Globus",
   startDate: "2026-06-19",
   endDate: "2026-07-03",
-  coverPhoto: { id: "cover-1", src: null, caption: null, sortOrder: 0 },
+  coverPhoto: { id: "cover-1", src: "eastern-europe/cover-01.jpg", caption: null, sortOrder: 0 },
   stops: [
     {
       id: "stop-berlin",
@@ -80,15 +80,29 @@ export const sampleTrip: Trip = {
         "Where the tour began. We arrived a day early and spent a self-guided first day among Berlin's museums before meeting the group.",
       activities: [
         {
+          id: "berlin-museum-island",
+          title: "Museum Island",
+          description:
+            "Before the rest of the day, a walk out onto Museum Island, the cluster of grand nineteenth-century museums set on an island in the Spree. We took most of them in from outside, and stepped into one.",
+          isHighlight: false,
+          sortOrder: 1,
+          photos: captioned("eastern-europe/berlin", "museum-island", [
+            "The Alte Nationalgalerie, its temple front raised on a high plinth with Friedrich Wilhelm IV on horseback at the head of the stairs. We admired it from outside but didn't go in.",
+            "The Bode Museum at the northern tip of the island, its copper dome and neo-Baroque front rising where the Spree divides around Museumsinsel.",
+            "Inside the Bode, the bronze equestrian statue of the Great Elector under the dome, above a sweep of red carpet. The collection was mostly religious art, so this was the only photo I took.",
+          ]),
+        },
+        {
           id: "berlin-technikmuseum",
           title: "Deutsches Technikmuseum",
           description:
             "With a free day before the tour, a self-guided morning at the Deutsches Technikmuseum, aircraft, locomotives, and hands-on exhibits across its sprawling halls.",
           isHighlight: false,
-          sortOrder: 1,
+          sortOrder: 2,
           photos: storedCaptioned("eastern-europe/berlin", "technikmuseum", [
             [1, "In the aviation hall, the corrugated Junkers Ju 52 in Lufthansa colours, framed by a neighbor's brightly painted wing overhead."],
-            [2, "Looking down over the maritime hall and its reconstructed wooden cargo ship."],
+            [2, "Looking down over the maritime hall and its centrepiece, the Kaffe barge, a roof-tile cargo boat that sank in the Havel off Spandau around 1855 and was raised in 1987."],
+            [14, "The same barge at floor level, its weathered ribs and planking laid open. The hull, cabin, and rudder are original; the mast, sail, and rigging were reconstructed by the museum."],
             [3, "An early glider of the kind Otto Lilienthal pioneered, the fragile beginning of human flight."],
             [4, "Aircraft strung throughout the atrium, from a Swiss-marked trainer to a delicate early glider."],
             [5, "A wartime fighter overhead, still wearing its Luftwaffe cross."],
@@ -98,7 +112,9 @@ export const sampleTrip: Trip = {
             [10, "A swept-wing Cold War jet overhead, a battered propeller from an earlier era beneath it."],
             [11, "The Bf 110 again from the side, among the aircraft packed wing to wing across the hall."],
             [12, "A V-1 flying bomb and other munitions, hung against photographs of the bombed city."],
-          ]), // 08 was a duplicate
+            [13, "The watersports hall, historic sailing dinghies rigged and hung above the story of boating on Berlin's Havel and Spree."],
+            [15, "The tugboat Kurt-Heinz (SB2-804), a preserved Berlin workboat filling one end of the maritime hall."],
+          ]), // 08 was a duplicate; 13-15 (watersports, barge, tug) added later
         },
         {
           id: "berlin-naturkunde",
@@ -106,7 +122,7 @@ export const sampleTrip: Trip = {
           description:
             "Berlin's Museum of Natural History, home to the world's tallest mounted dinosaur skeleton. It didn't quite win us over, though, hence only a couple of photos.",
           isHighlight: false,
-          sortOrder: 2,
+          sortOrder: 3,
           photos: storedCaptioned("eastern-europe/berlin", "naturkunde", [
             [1, "The wet collection, a glowing glass vault of thousands of creatures preserved in alcohol and one of the museum's signature sights."],
             [2, "A towering Tyrannosaurus rex skeleton in the dinosaur hall."],
@@ -118,8 +134,10 @@ export const sampleTrip: Trip = {
           description:
             "Met the Tour Director and traveling companions over a welcome dinner at the hotel.",
           isHighlight: false,
-          sortOrder: 3,
-          photos: [],
+          sortOrder: 4,
+          photos: captioned("eastern-europe/berlin", "welcome", [
+            "The whole tour group together. We didn't get a photo at the welcome dinner, so this one is from the end of the trip.",
+          ]),
         },
         {
           id: "berlin-historic",
@@ -127,21 +145,23 @@ export const sampleTrip: Trip = {
           description:
             "A guided walk through Berlin's twentieth-century history, roughly in this order: a marker tracing the line of the Berlin Wall, Checkpoint Charlie, the Topographie des Terrors beside a surviving stretch of the Wall, and the Memorial to the Murdered Jews of Europe. That memorial sits directly across from the deliberately unmarked site of the Führerbunker, said to be a quiet, pointed slight against Hitler. From there to the Brandenburg Gate, and finally the Kurfürstendamm. The Reichstag stayed out of reach behind a city event, and the State Opera House slipped past without a photo.",
           isHighlight: false,
-          sortOrder: 4,
-          photos: captioned("eastern-europe/berlin", "historic-berlin", [
-            "A double line of cobblestones and this bronze strip, “Berliner Mauer 1961–1989”, trace where the Wall once cut through the city.",
-            "Checkpoint Charlie: the Cold War crossing between the American and Soviet sectors, and its famous four-language sign.",
-            "The reverse side, “You are entering the American sector.”",
-            "Us at the Checkpoint Charlie guard house.",
-            "The Topographie des Terrors, on the cleared site of the Gestapo and SS headquarters, with a preserved stretch of Wall out front.",
-            "Beneath the walkway, the excavated cellars where the SS and Gestapo once held and interrogated prisoners.",
-            "One of the longest surviving stretches of the Wall, pitted and rebar-bared by years of souvenir-hunting “wall-peckers.”",
-            "The Memorial to the Murdered Jews of Europe: Peter Eisenman's field of 2,711 concrete stelae, rising and falling like a swell underfoot.",
-            "The site of the Führerbunker, where Hitler spent his final days in 1945. Left deliberately unmarked and now, fittingly, a car park. The Memorial to the Murdered Jews of Europe stands just across the way.",
-            "Down Straße des 17. Juni to the Siegessäule, the Victory Column, its gilded Victoria catching the sun above the Tiergarten.",
-            "The Brandenburg Gate, once stranded in the Wall's no-man's-land, now Berlin's symbol of reunification.",
-            "Up close: the Quadriga, victory driving her four-horse chariot atop the gate.",
-            "On the Kurfürstendamm, the Kaiser Wilhelm Memorial Church, its bomb-shattered spire left unrepaired as a memorial, nicknamed by Berliners “the hollow tooth.”",
+          sortOrder: 5,
+          photos: storedCaptioned("eastern-europe/berlin", "historic-berlin", [
+            [1, "A double line of cobblestones and this bronze strip, “Berliner Mauer 1961–1989”, trace where the Wall once cut through the city."],
+            [2, "Checkpoint Charlie: the Cold War crossing between the American and Soviet sectors, and its famous four-language sign."],
+            [3, "The reverse side, “You are entering the American sector.”"],
+            [4, "Us at the Checkpoint Charlie guard house."],
+            [5, "The Topographie des Terrors, on the cleared site of the Gestapo and SS headquarters, with a preserved stretch of Wall out front."],
+            [6, "Beneath the walkway, the excavated cellars where the SS and Gestapo once held and interrogated prisoners."],
+            [7, "One of the longest surviving stretches of the Wall, pitted and rebar-bared by years of souvenir-hunting “wall-peckers.”"],
+            [8, "The Memorial to the Murdered Jews of Europe: Peter Eisenman's field of 2,711 concrete stelae, rising and falling like a swell underfoot."],
+            [9, "The site of the Führerbunker, where Hitler spent his final days in 1945. Left deliberately unmarked and now, fittingly, a car park. The Memorial to the Murdered Jews of Europe stands just across the way."],
+            [10, "Down Straße des 17. Juni to the Siegessäule, the Victory Column, its gilded Victoria catching the sun above the Tiergarten."],
+            [14, "The Victory Column up close, its shaft ringed with gilded gun barrels and topped by the golden Victoria that Berliners nicknamed “Goldelse.”"],
+            [15, "The Soviet War Memorial on Straße des 17. Juni, just west of the Brandenburg Gate. Built in 1945, its curved colonnade is crowned by a bronze Red Army soldier and honours the Soviet dead of the Battle of Berlin."],
+            [11, "The Brandenburg Gate, once stranded in the Wall's no-man's-land, now Berlin's symbol of reunification."],
+            [12, "Up close: the Quadriga, victory driving her four-horse chariot atop the gate."],
+            [13, "On the Kurfürstendamm, the Kaiser Wilhelm Memorial Church, its bomb-shattered spire left unrepaired as a memorial, nicknamed by Berliners “the hollow tooth.”"],
           ]),
         },
         {
@@ -150,7 +170,7 @@ export const sampleTrip: Trip = {
           description:
             "Out to Potsdam: the House of the Wannsee Conference, the gardens of Sanssouci Palace, the Dutch Quarter and the Alexandrowka Russian colony, and the Glienicke Brücke, the Cold War 'Bridge of Spies.'",
           isHighlight: false,
-          sortOrder: 5,
+          sortOrder: 6,
           photos: captioned("eastern-europe/berlin", "potsdam", [
             "The House of the Wannsee Conference. In this lakeside villa, on 20 January 1942, fifteen senior Nazi officials met for barely ninety minutes to coordinate the “Final Solution to the Jewish Question.” I had just watched the film Nuremberg, and standing here was surreal. A place this beautiful was where the murder of millions was set in motion.",
             "Inside, a facsimile of Hitler's letter of 1 September 1939 authorising the murder of the “incurably ill,” dated to the very day the war began. It is the only surviving written order from Hitler to kill an entire group of people.",

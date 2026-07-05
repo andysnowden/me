@@ -1,16 +1,19 @@
 // General photo uploader for the trip-photos bucket.
 //
 // Usage:
-//   node --env-file=.env.local scripts/upload-photos.mjs <sourceDir> <bucketPrefix> [namePrefix]
+//   node --env-file=.env.local scripts/upload-photos.mjs <sourceDir> <bucketPrefix> [namePrefix] [startIndex]
 //
 // Example:
 //   node --env-file=.env.local scripts/upload-photos.mjs \
-//     "/Users/asnowden/Desktop/trip/berlin/historic-berlin" \
+//     "/mnt/nfs/truenas/Photos/berlin/historic-berlin" \
 //     "eastern-europe/berlin/historic-berlin"
 //
 // Uploads every JPEG under <sourceDir> (recursively, natural-sorted by filename)
 // to trip-photos/<bucketPrefix>/<namePrefix>-NN.jpg, resized to a 2560px long
 // edge with EXIF/GPS stripped. Prints a JSON manifest of the uploaded paths.
+//
+// startIndex (default 1) sets the first NN, so you can append to an existing
+// gallery without overwriting it: pass 13 to start naming at <namePrefix>-13.jpg.
 //
 // Requires SUPABASE_SERVICE_ROLE_KEY (anon is read-only). Keep it in .env.local
 // (gitignored) and rotate afterward if desired.
@@ -33,10 +36,15 @@ if (!url || !key) {
 const sourceDir = process.argv[2];
 const bucketPrefix = (process.argv[3] || "").replace(/^\/+|\/+$/g, "");
 const namePrefix = process.argv[4] || path.basename(bucketPrefix);
+const startIndex = Number.parseInt(process.argv[5] ?? "1", 10);
 if (!sourceDir || !bucketPrefix) {
   console.error(
-    "Usage: node --env-file=.env.local scripts/upload-photos.mjs <sourceDir> <bucketPrefix> [namePrefix]",
+    "Usage: node --env-file=.env.local scripts/upload-photos.mjs <sourceDir> <bucketPrefix> [namePrefix] [startIndex]",
   );
+  process.exit(1);
+}
+if (!Number.isInteger(startIndex) || startIndex < 1) {
+  console.error(`Invalid startIndex "${process.argv[5]}" (must be a positive integer).`);
   process.exit(1);
 }
 if (!existsSync(sourceDir)) {
@@ -74,7 +82,7 @@ if (files.length === 0) {
 
 const manifest = [];
 for (let i = 0; i < files.length; i++) {
-  const n = String(i + 1).padStart(2, "0");
+  const n = String(startIndex + i).padStart(2, "0");
   const dest = `${bucketPrefix}/${namePrefix}-${n}.jpg`;
   const buf = await sharp(files[i])
     .rotate()

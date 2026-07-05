@@ -21,7 +21,7 @@ begin
      'Globus', '2026-06-19', '2026-07-03', true)
   returning id into v_trip;
 
-  insert into public.photos (trip_id, sort_order) values (v_trip, 0);
+  insert into public.photos (trip_id, src, sort_order) values (v_trip, 'eastern-europe/cover-01.jpg', 0);
 
   -- 1 · Berlin (start)
   insert into public.stops (trip_id, slug, city, country, lat, lng, "order", nights, date_from, date_to, summary)
@@ -30,26 +30,38 @@ begin
   returning id into v_stop;
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
-  values (v_stop, 'Deutsches Technikmuseum',
-          'With a free day before the tour, a self-guided morning at the Deutsches Technikmuseum, aircraft, locomotives, and hands-on exhibits across its sprawling halls.', false, 1)
+  values (v_stop, 'Museum Island',
+          'Before the rest of the day, a walk out onto Museum Island, the cluster of grand nineteenth-century museums set on an island in the Spree. We took most of them in from outside, and stepped into one.', false, 1)
   returning id into v_act;
-  -- 08 was a duplicate of 07 and was removed.
+  insert into public.photos (activity_id, src, caption, sort_order) values
+  (v_act, 'eastern-europe/berlin/museum-island/museum-island-01.jpg', 'The Alte Nationalgalerie, its temple front raised on a high plinth with Friedrich Wilhelm IV on horseback at the head of the stairs. We admired it from outside but didn''t go in.', 1),
+  (v_act, 'eastern-europe/berlin/museum-island/museum-island-02.jpg', 'The Bode Museum at the northern tip of the island, its copper dome and neo-Baroque front rising where the Spree divides around Museumsinsel.', 2),
+  (v_act, 'eastern-europe/berlin/museum-island/museum-island-03.jpg', 'Inside the Bode, the bronze equestrian statue of the Great Elector under the dome, above a sweep of red carpet. The collection was mostly religious art, so this was the only photo I took.', 3);
+
+  insert into public.activities (stop_id, title, description, is_highlight, sort_order)
+  values (v_stop, 'Deutsches Technikmuseum',
+          'With a free day before the tour, a self-guided morning at the Deutsches Technikmuseum, aircraft, locomotives, and hands-on exhibits across its sprawling halls.', false, 2)
+  returning id into v_act;
+  -- 08 was a duplicate of 07 and was removed; 13-15 (watersports hall, barge, tug) added later.
   insert into public.photos (activity_id, src, caption, sort_order) values
   (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-01.jpg', 'In the aviation hall, the corrugated Junkers Ju 52 in Lufthansa colours, framed by a neighbor''s brightly painted wing overhead.', 1),
-  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-02.jpg', 'Looking down over the maritime hall and its reconstructed wooden cargo ship.', 2),
-  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-03.jpg', 'An early glider of the kind Otto Lilienthal pioneered, the fragile beginning of human flight.', 3),
-  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-04.jpg', 'Aircraft strung throughout the atrium, from a Swiss-marked trainer to a delicate early glider.', 4),
-  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-05.jpg', 'A wartime fighter overhead, still wearing its Luftwaffe cross.', 5),
-  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-06.jpg', 'Early jet engines, one cut open to show the workings of a turbojet.', 6),
-  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-07.jpg', 'The Ju 52 from the side, D-AZAW in Lufthansa livery, with travelers dressed for the 1930s about to board.', 7),
-  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-09.jpg', 'A Messerschmitt Bf 110 head-on, flight gear and life vests laid out in the cases below.', 8),
-  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-10.jpg', 'A swept-wing Cold War jet overhead, a battered propeller from an earlier era beneath it.', 9),
-  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-11.jpg', 'The Bf 110 again from the side, among the aircraft packed wing to wing across the hall.', 10),
-  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-12.jpg', 'A V-1 flying bomb and other munitions, hung against photographs of the bombed city.', 11);
+  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-02.jpg', 'Looking down over the maritime hall and its centrepiece, the Kaffe barge, a roof-tile cargo boat that sank in the Havel off Spandau around 1855 and was raised in 1987.', 2),
+  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-14.jpg', 'The same barge at floor level, its weathered ribs and planking laid open. The hull, cabin, and rudder are original; the mast, sail, and rigging were reconstructed by the museum.', 3),
+  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-03.jpg', 'An early glider of the kind Otto Lilienthal pioneered, the fragile beginning of human flight.', 4),
+  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-04.jpg', 'Aircraft strung throughout the atrium, from a Swiss-marked trainer to a delicate early glider.', 5),
+  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-05.jpg', 'A wartime fighter overhead, still wearing its Luftwaffe cross.', 6),
+  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-06.jpg', 'Early jet engines, one cut open to show the workings of a turbojet.', 7),
+  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-07.jpg', 'The Ju 52 from the side, D-AZAW in Lufthansa livery, with travelers dressed for the 1930s about to board.', 8),
+  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-09.jpg', 'A Messerschmitt Bf 110 head-on, flight gear and life vests laid out in the cases below.', 9),
+  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-10.jpg', 'A swept-wing Cold War jet overhead, a battered propeller from an earlier era beneath it.', 10),
+  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-11.jpg', 'The Bf 110 again from the side, among the aircraft packed wing to wing across the hall.', 11),
+  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-12.jpg', 'A V-1 flying bomb and other munitions, hung against photographs of the bombed city.', 12),
+  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-13.jpg', 'The watersports hall, historic sailing dinghies rigged and hung above the story of boating on Berlin''s Havel and Spree.', 13),
+  (v_act, 'eastern-europe/berlin/technikmuseum/technikmuseum-15.jpg', 'The tugboat Kurt-Heinz (SB2-804), a preserved Berlin workboat filling one end of the maritime hall.', 14);
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
   values (v_stop, 'Museum für Naturkunde',
-          'Berlin''s Museum of Natural History, home to the world''s tallest mounted dinosaur skeleton. It didn''t quite win us over, though, hence only a couple of photos.', false, 2)
+          'Berlin''s Museum of Natural History, home to the world''s tallest mounted dinosaur skeleton. It didn''t quite win us over, though, hence only a couple of photos.', false, 3)
   returning id into v_act;
   insert into public.photos (activity_id, src, caption, sort_order) values
   (v_act, 'eastern-europe/berlin/naturkunde/naturkunde-01.jpg', 'The wet collection, a glowing glass vault of thousands of creatures preserved in alcohol and one of the museum''s signature sights.', 1),
@@ -57,11 +69,14 @@ begin
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
   values (v_stop, 'Welcome dinner',
-          'Met the Tour Director and traveling companions over a welcome dinner at the hotel.', false, 3);
+          'Met the Tour Director and traveling companions over a welcome dinner at the hotel.', false, 4)
+  returning id into v_act;
+  insert into public.photos (activity_id, src, caption, sort_order) values
+  (v_act, 'eastern-europe/berlin/welcome/welcome-01.jpg', 'The whole tour group together. We didn''t get a photo at the welcome dinner, so this one is from the end of the trip.', 1);
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
   values (v_stop, 'Historic Berlin',
-          'A guided walk through Berlin''s twentieth-century history, roughly in this order: a marker tracing the line of the Berlin Wall, Checkpoint Charlie, the Topographie des Terrors beside a surviving stretch of the Wall, and the Memorial to the Murdered Jews of Europe. That memorial sits directly across from the deliberately unmarked site of the Führerbunker, said to be a quiet, pointed slight against Hitler. From there to the Brandenburg Gate, and finally the Kurfürstendamm. The Reichstag stayed out of reach behind a city event, and the State Opera House slipped past without a photo.', false, 4)
+          'A guided walk through Berlin''s twentieth-century history, roughly in this order: a marker tracing the line of the Berlin Wall, Checkpoint Charlie, the Topographie des Terrors beside a surviving stretch of the Wall, and the Memorial to the Murdered Jews of Europe. That memorial sits directly across from the deliberately unmarked site of the Führerbunker, said to be a quiet, pointed slight against Hitler. From there to the Brandenburg Gate, and finally the Kurfürstendamm. The Reichstag stayed out of reach behind a city event, and the State Opera House slipped past without a photo.', false, 5)
   returning id into v_act;
   insert into public.photos (activity_id, src, caption, sort_order) values
   (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-01.jpg', 'A double line of cobblestones and this bronze strip, “Berliner Mauer 1961–1989”, trace where the Wall once cut through the city.', 1),
@@ -74,13 +89,15 @@ begin
   (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-08.jpg', 'The Memorial to the Murdered Jews of Europe: Peter Eisenman''s field of 2,711 concrete stelae, rising and falling like a swell underfoot.', 8),
   (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-09.jpg', 'The site of the Führerbunker, where Hitler spent his final days in 1945. Left deliberately unmarked and now, fittingly, a car park. The Memorial to the Murdered Jews of Europe stands just across the way.', 9),
   (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-10.jpg', 'Down Straße des 17. Juni to the Siegessäule, the Victory Column, its gilded Victoria catching the sun above the Tiergarten.', 10),
-  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-11.jpg', 'The Brandenburg Gate, once stranded in the Wall''s no-man''s-land, now Berlin''s symbol of reunification.', 11),
-  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-12.jpg', 'Up close: the Quadriga, victory driving her four-horse chariot atop the gate.', 12),
-  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-13.jpg', 'On the Kurfürstendamm, the Kaiser Wilhelm Memorial Church, its bomb-shattered spire left unrepaired as a memorial, nicknamed by Berliners “the hollow tooth.”', 13);
+  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-14.jpg', 'The Victory Column up close, its shaft ringed with gilded gun barrels and topped by the golden Victoria that Berliners nicknamed “Goldelse.”', 11),
+  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-15.jpg', 'The Soviet War Memorial on Straße des 17. Juni, just west of the Brandenburg Gate. Built in 1945, its curved colonnade is crowned by a bronze Red Army soldier and honours the Soviet dead of the Battle of Berlin.', 12),
+  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-11.jpg', 'The Brandenburg Gate, once stranded in the Wall''s no-man''s-land, now Berlin''s symbol of reunification.', 13),
+  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-12.jpg', 'Up close: the Quadriga, victory driving her four-horse chariot atop the gate.', 14),
+  (v_act, 'eastern-europe/berlin/historic-berlin/historic-berlin-13.jpg', 'On the Kurfürstendamm, the Kaiser Wilhelm Memorial Church, its bomb-shattered spire left unrepaired as a memorial, nicknamed by Berliners “the hollow tooth.”', 15);
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
   values (v_stop, 'Half-Day Potsdam Discovery',
-          'Out to Potsdam: the House of the Wannsee Conference, the gardens of Sanssouci Palace, the Dutch Quarter and the Alexandrowka Russian colony, and the Glienicke Brücke, the Cold War ''Bridge of Spies.''', false, 5)
+          'Out to Potsdam: the House of the Wannsee Conference, the gardens of Sanssouci Palace, the Dutch Quarter and the Alexandrowka Russian colony, and the Glienicke Brücke, the Cold War ''Bridge of Spies.''', false, 6)
   returning id into v_act;
   insert into public.photos (activity_id, src, caption, sort_order) values
   (v_act, 'eastern-europe/berlin/potsdam/potsdam-01.jpg', 'The House of the Wannsee Conference. In this lakeside villa, on 20 January 1942, fifteen senior Nazi officials met for barely ninety minutes to coordinate the “Final Solution to the Jewish Question.” I had just watched the film Nuremberg, and standing here was surreal. A place this beautiful was where the murder of millions was set in motion.', 1),

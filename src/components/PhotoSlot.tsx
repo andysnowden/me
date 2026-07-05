@@ -10,10 +10,14 @@ export default function PhotoSlot({
   photo,
   className = "",
   priority = false,
+  fit = "cover",
 }: {
   photo: Photo;
   className?: string;
   priority?: boolean;
+  /** How the image sits in the 4:3 frame. "contain" shows the whole image
+   * (letterboxed) for shots that shouldn't be cropped, e.g. a route map cover. */
+  fit?: "cover" | "contain";
 }) {
   const url = photoUrl(photo.src);
 
@@ -29,7 +33,7 @@ export default function PhotoSlot({
             fill
             sizes="(max-width: 640px) 100vw, 33vw"
             priority={priority}
-            className="object-cover"
+            className={fit === "contain" ? "object-contain" : "object-cover"}
           />
         ) : (
           <Placeholder caption={photo.caption} />

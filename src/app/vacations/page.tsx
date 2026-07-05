@@ -48,6 +48,7 @@ export default async function VacationsPage() {
                 <Link href={`/vacations/${trip.slug}`} className="group block">
                   <PhotoSlot
                     photo={cover}
+                    fit="contain"
                     className="transition-transform group-hover:-translate-y-0.5"
                   />
                   <div className="mt-4">
