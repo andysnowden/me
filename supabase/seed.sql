@@ -222,16 +222,52 @@ A note on the photographs that follow: some are hard to look at. Inside several 
   (v_act, 'eastern-europe/krakow/auschwitz/auschwitz-35.jpg', 'A last look: one fence post, its insulators and wire, against an open sky. The camp was liberated in January 1945, and what remains is kept so that no one can ever say it did not happen.', 35);
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
-  values (v_stop, 'Kraków city tour',
-          'A walk through Kazimierz, the Old Jewish Quarter, plus St. Mary''s Church and a photo stop at Wawel Castle.', false, 3)
+  values (v_stop, 'Wieliczka Salt Mine',
+          'Down 136 metres into a UNESCO-listed labyrinth carved entirely from salt, tunnels, a subterranean lake, and the astonishing Chapel of St. Kinga, salt from chandelier to altarpiece.', false, 3)
   returning id into v_act;
-  insert into public.photos (activity_id, sort_order) select v_act, g from generate_series(1, 3) g;
+  insert into public.photos (activity_id, src, caption, sort_order) values
+  (v_act, 'eastern-europe/krakow/wieliczka/wieliczka-01.jpg', 'The gated shaft at the surface. From here the tour heads down into the oldest part of the mine, worked for salt since the 13th century.', 1),
+  (v_act, 'eastern-europe/krakow/wieliczka/wieliczka-02.jpg', 'The Antonia fore-shaft, mid-17th century, a woven basket still hanging from its hoist rope in the timbered dark.', 2),
+  (v_act, 'eastern-europe/krakow/wieliczka/wieliczka-03.jpg', 'Chamber Urszula, its roof held up by great stacked-log cribbing. The whole mine is shored with timber like this.', 3),
+  (v_act, 'eastern-europe/krakow/wieliczka/wieliczka-04.jpg', 'One of the towering timbered chambers, braced floor to ceiling with wood and topped by an old winding wheel.', 4),
+  (v_act, 'eastern-europe/krakow/wieliczka/wieliczka-05.jpg', 'An old winding machine of timber and rope, once worked by hand to raise salt and men through the levels.', 5),
+  (v_act, 'eastern-europe/krakow/wieliczka/wieliczka-06.jpg', 'A horse-powered gin, the kind of treadmill a blindfolded horse walked in circles to haul salt up the shafts. Horses lived their whole lives down here.', 6),
+  (v_act, 'eastern-europe/krakow/wieliczka/wieliczka-07.jpg', 'A diorama of the beginnings: long before the deep mine, people boiled the salty spring water here to draw out the salt.', 7),
+  (v_act, 'eastern-europe/krakow/wieliczka/wieliczka-08.jpg', 'The legend of Saint Kinga, carved in salt. The Hungarian princess is said to have thrown her ring into a salt mine at home, and when miners sank the first shaft at Wieliczka they found it in the first lump of salt.', 8),
+  (v_act, 'eastern-europe/krakow/wieliczka/wieliczka-09.jpg', 'Salt figures of the methane burners at work. The gas gathered along the ceilings, so a miner would crawl below it and reach up a lit torch on a long pole to burn it away before it could build to an explosion.', 9),
+  (v_act, 'eastern-europe/krakow/wieliczka/wieliczka-10.jpg', 'The salt shows itself everywhere, here as a rough white crust blooming across the ceiling of a chamber.', 10),
+  (v_act, 'eastern-europe/krakow/wieliczka/wieliczka-11.jpg', 'The Kunegunda Chamber, lit in colour and peopled with salt dwarfs. The miners carved them in tribute to the old legends of the little folk who guard the treasures of the mine.', 11),
+  (v_act, 'eastern-europe/krakow/wieliczka/wieliczka-12.jpg', 'A monument to Nicolaus Copernicus carved from salt, set up in 1973 for the 500th anniversary of his birth. He is said to have visited the mine as a young man.', 12),
+  (v_act, 'eastern-europe/krakow/wieliczka/wieliczka-13.jpg', 'The doorway to the Chapel of St. Anthony, the oldest of the mine''s chapels, carved at the end of the 17th century so miners could hear Mass before their shift.', 13),
+  (v_act, 'eastern-europe/krakow/wieliczka/wieliczka-16.jpg', 'St. Kinga''s Chapel, the great one, over 100 metres down and more than 50 metres long. Miners spent decades carving it. Everything here is salt: the walls, the altars, the chandeliers, even the tiled floor underfoot.', 14),
+  (v_act, 'eastern-europe/krakow/wieliczka/wieliczka-14.jpg', 'The Flight into Egypt, one of the salt reliefs carved into the chapel walls, Joseph leading the donkey with Mary and the child on toward a domed city.', 15),
+  (v_act, 'eastern-europe/krakow/wieliczka/wieliczka-15.jpg', 'A copy of Leonardo''s Last Supper cut in low relief into the salt wall of the chapel.', 16),
+  (v_act, 'eastern-europe/krakow/wieliczka/wieliczka-17.jpg', 'One of the largest reliefs, a whole town worked into the rock with a lit Nativity set at its heart.', 17),
+  (v_act, 'eastern-europe/krakow/wieliczka/wieliczka-18.jpg', 'Another scene carved straight into the salt, framed and lit against the grey wall.', 18),
+  (v_act, 'eastern-europe/krakow/wieliczka/wieliczka-19.jpg', 'An underground lake, still and green under the lights. The water is brine, so dense with salt that you would float on it like the Dead Sea.', 19),
+  (v_act, 'eastern-europe/krakow/wieliczka/wieliczka-20.jpg', 'A low passage between chambers, a channel cut to carry the brine that constantly weeps from the walls.', 20),
+  (v_act, 'eastern-europe/krakow/wieliczka/wieliczka-21.jpg', 'A brick-and-timber corridor linking the workings, propped and arched against the weight of the rock.', 21),
+  (v_act, 'eastern-europe/krakow/wieliczka/wieliczka-22.jpg', 'The Daniłowicz Shaft, sunk in the 1630s and still the way in and out. From here the lift carried us back up to daylight.', 22);
 
   insert into public.activities (stop_id, title, description, is_highlight, sort_order)
-  values (v_stop, 'Wieliczka Salt Mine',
-          'Down 136 metres into a UNESCO-listed labyrinth carved entirely from salt, tunnels, a subterranean lake, and the astonishing Chapel of St. Kinga, salt from chandelier to altarpiece.', false, 4)
+  values (v_stop, 'Kraków city tour',
+          'A guided walk through the old town. The extreme heat that day trimmed the route: the planned walk through Kazimierz, Kraków''s old Jewish quarter, was dropped. We spent the time instead in St. Mary''s Basilica on the Main Market Square, under its blue star-painted vault and before the great carved altarpiece of Veit Stoss, with a stop across the river at the Ghetto Heroes Square in Podgórze.', false, 4)
   returning id into v_act;
-  insert into public.photos (activity_id, sort_order) select v_act, g from generate_series(1, 3) g;
+  insert into public.photos (activity_id, src, caption, sort_order) values
+  (v_act, 'eastern-europe/krakow/citytour/citytour-01.jpg', 'St. Mary''s Basilica on the Main Market Square, its two unequal brick Gothic towers over the old town. Every hour a trumpeter sounds the hejnał from the taller tower, breaking off mid-note in memory of a medieval bugler.', 1),
+  (v_act, 'eastern-europe/krakow/citytour/citytour-02.jpg', 'Inside, the nave opens toward the chancel under a vault painted deep blue and scattered with gold stars.', 2),
+  (v_act, 'eastern-europe/krakow/citytour/citytour-03.jpg', 'The star-spangled vault overhead, nineteenth-century painting by Jan Matejko and his pupils over the medieval ribs.', 3),
+  (v_act, 'eastern-europe/krakow/citytour/citytour-04.jpg', 'The chancel, its tall Gothic windows bright with stained glass above the great carved altarpiece.', 4),
+  (v_act, 'eastern-europe/krakow/citytour/citytour-05.jpg', 'The altarpiece up close: the high altar of Veit Stoss, finished in 1489, its central scene the Dormition of the Virgin among the Apostles. It is the largest Gothic altarpiece in the world.', 5),
+  (v_act, 'eastern-europe/krakow/citytour/citytour-06.jpg', 'Turning back toward the west end, the organ on its gallery and the painted columns leading the eye down the nave.', 6),
+  (v_act, 'eastern-europe/krakow/citytour/citytour-07.jpg', 'Plac Bohaterów Getta in Podgórze, the square from which Kraków''s Jews were deported. Its field of empty bronze chairs, set out in 2005, stands for the people and the belongings taken from the ghetto.', 7);
+
+  insert into public.activities (stop_id, title, description, is_highlight, sort_order)
+  values (v_stop, 'Polish Polka and Dinner Party',
+          'An optional evening out at a country tavern: a Polish dinner of hearty traditional dishes and wine, with a costumed troupe playing folk and polka tunes and dancing between the courses.', false, 5)
+  returning id into v_act;
+  insert into public.photos (activity_id, src, caption, sort_order) values
+  (v_act, 'eastern-europe/krakow/polka/polka-01.jpg', 'The folk troupe in full swing, a dancer''s skirt flying and her partner leading her by the hand, with an accordion and a double bass behind. They played and danced between the courses.', 1);
 
   -- 4 · Budapest
   insert into public.stops (trip_id, slug, city, country, lat, lng, "order", nights, date_from, date_to, summary)
